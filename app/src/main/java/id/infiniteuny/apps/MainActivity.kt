@@ -1,20 +1,26 @@
 package id.infiniteuny.apps
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import id.infiniteuny.apps.ui.HomeFragment
+import id.infiniteuny.apps.ui.MapsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(),
+    BottomNavigationView.OnNavigationItemSelectedListener ,
+    HomeFragment.OnFragmentInteractionListener,
+    MapsFragment.OnFragmentInteractionListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         bot_navigation.setOnNavigationItemSelectedListener(this)
-        loadFragment(HomeFragment())
-    }
+         }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId){
@@ -41,6 +47,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             return true
         }
         return false
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+
     }
 
 }
