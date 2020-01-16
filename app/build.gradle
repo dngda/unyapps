@@ -55,4 +55,7 @@ dependencies {
         exclude group: 'glide-parent'
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //search edittext
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
 }

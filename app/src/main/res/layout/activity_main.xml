@@ -10,23 +10,26 @@
 
         <fragment
             android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            app:defaultNavHost="true"
             android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bot_navigation"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/nav"
             tools:layout="@layout/fragment_home"
-            app:navGraph="@navigation/nav"/>
+            tools:layout_editor_absoluteX="0dp" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bot_navigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="start"
-            app:itemBackground="@color/colorPrimary"
+            app:itemBackground="@color/white"
             app:itemIconTint="@color/bottom_navigation_item"
-            app:labelVisibilityMode="unlabeled"
+            app:itemTextColor="@color/bottom_navigation_item"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_menu" />
 

@@ -1,4 +1,4 @@
-package id.infiniteuny.apps.ui
+package id.infiniteuny.apps.login
 
 import android.content.Intent
 import android.graphics.Color
