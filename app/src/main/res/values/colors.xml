@@ -7,4 +7,5 @@
     <color name="loginBackground">#3600B1</color>
     <color name="violet">#8D60E2</color>
     <color name="light_violet">#B59CE2</color>
+    <color name="black">#000</color>
 </resources>
