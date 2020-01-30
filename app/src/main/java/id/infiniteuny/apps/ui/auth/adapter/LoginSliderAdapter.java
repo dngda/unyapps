@@ -1,5 +1,6 @@
-package id.infiniteuny.apps.adapter;
+package id.infiniteuny.apps.ui.auth.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +13,17 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import id.infiniteuny.apps.R;
 
-public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample.SliderAdapterVH> {
+public class LoginSliderAdapter extends SliderViewAdapter<LoginSliderAdapter.SliderAdapterVH> {
 
     private Context context;
 
-    public SliderAdapterExample(Context context) {
+    public LoginSliderAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_img_slider, null);
+        @SuppressLint("InflateParams") View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_img_slider, null);
         return new SliderAdapterVH(inflate);
     }
 
@@ -73,7 +74,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
         ImageView imageViewBackground;
         TextView textViewDescription;
 
-        public SliderAdapterVH(View itemView) {
+        SliderAdapterVH(View itemView) {
             super(itemView);
             imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
             textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider);

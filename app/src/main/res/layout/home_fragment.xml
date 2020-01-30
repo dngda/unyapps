@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -101,9 +101,9 @@
             android:id="@+id/fm_home_RvPengumuman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/fm_home_morePengumuman"
             tools:itemCount="5"
-            tools:listitem="@layout/content_pengumuman"
-            app:layout_constraintTop_toBottomOf="@+id/fm_home_morePengumuman" />
+            tools:listitem="@layout/content_pengumuman" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -156,13 +156,12 @@
             android:id="@+id/fm_home_RvBerita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:itemCount="5"
-            tools:listitem="@layout/support_simple_spinner_dropdown_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fm_home_moreBerita" />
+            app:layout_constraintTop_toBottomOf="@+id/fm_home_moreBerita"
+            tools:itemCount="5"
+            tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
