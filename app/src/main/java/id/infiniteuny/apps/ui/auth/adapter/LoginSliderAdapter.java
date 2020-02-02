@@ -31,33 +31,16 @@ public class LoginSliderAdapter extends SliderViewAdapter<LoginSliderAdapter.Sli
     public void onBindViewHolder(SliderAdapterVH viewHolder, int position) {
         viewHolder.textViewDescription.setText("");
 
-        switch (position) {
-            case 1:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.cecan1)
-                        .centerCrop()
-                        .into(viewHolder.imageViewBackground);
-                break;
-            case 2:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.cecan2)
-                        .centerCrop()
-                        .into(viewHolder.imageViewBackground);
-                break;
-            case 4:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.cecan3)
-                        .centerCrop()
-                        .into(viewHolder.imageViewBackground);
-                break;
-
-            default:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.cecan4)
-                        .centerCrop()
-                        .into(viewHolder.imageViewBackground);
-                break;
-
+        if (position == 1) {
+            Glide.with(viewHolder.itemView)
+                    .load(R.drawable.image_uny)
+                    .centerCrop()
+                    .into(viewHolder.imageViewBackground);
+        } else {
+            Glide.with(viewHolder.itemView)
+                    .load(R.drawable.image_uny2)
+                    .centerCrop()
+                    .into(viewHolder.imageViewBackground);
         }
 
     }
@@ -65,7 +48,7 @@ public class LoginSliderAdapter extends SliderViewAdapter<LoginSliderAdapter.Sli
     @Override
     public int getCount() {
         //slider view count could be dynamic size
-        return 4;
+        return 2;
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {

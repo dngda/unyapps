@@ -4,15 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import id.infiniteuny.apps.data.db.entities.News
+import id.infiniteuny.apps.data.db.entities.NewsContent
 import id.infiniteuny.apps.data.db.entities.User
 
 @Database(
-    entities = [User::class],
+    entities = [User::class, News::class, NewsContent::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+    abstract fun getNewsDao(): NewsDao
+    abstract fun getNewsContentDao(): NewsContentDao
+
 
     companion object {
 

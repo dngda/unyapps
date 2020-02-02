@@ -7,6 +7,7 @@ import id.infiniteuny.apps.data.db.entities.User
 import id.infiniteuny.apps.data.repositories.UserRepository
 import id.infiniteuny.apps.ui.MainActivity
 import id.infiniteuny.apps.util.Coroutines
+import id.infiniteuny.apps.util.snackBar
 
 class AuthViewModel(
     private val repository: UserRepository
@@ -14,9 +15,13 @@ class AuthViewModel(
 
     fun getLoggedInUser() = repository.getUser()
 
+    fun onLoginButtonClick(view: View) {
+        view.snackBar("Coming soon!")
+    }
+
     fun onGuestButtonClick(view: View) {
 
-        val guest = User(0, "guest", null)
+        val guest = User(0, "Guest", "guest@useremail.com")
         Coroutines.main {
             repository.saveUser(guest)
         }
