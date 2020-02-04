@@ -23,7 +23,7 @@ public class LoginSliderAdapter extends SliderViewAdapter<LoginSliderAdapter.Sli
 
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        @SuppressLint("InflateParams") View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_img_slider, null);
+        @SuppressLint("InflateParams") View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_img_slider, null);
         return new SliderAdapterVH(inflate);
     }
 
