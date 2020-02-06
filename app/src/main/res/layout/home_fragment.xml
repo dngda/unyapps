@@ -36,8 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:mt_hint="Cari Pengumuman"
             app:mt_maxSuggestionsCount="10"
-            app:mt_placeholder="Cari Pengumuman"
-            app:mt_roundedSearchBarEnabled="true" />
+            app:mt_placeholder="Cari Pengumuman" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/fm_home_viewPager"

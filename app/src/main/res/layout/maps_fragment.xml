@@ -256,7 +256,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.mancj.materialsearchbar.MaterialSearchBar
+        <com.arlib.floatingsearchview.FloatingSearchView
             app:floatingSearch_backgroundColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -264,10 +264,11 @@
             android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:id="@+id/searching"
-            app:mt_hint="Cari Ruangan"
-            app:mt_maxSuggestionsCount="10"
-            app:mt_roundedSearchBarEnabled="true"
-            app:mt_placeholder="Cari Ruangan"
+            app:floatingSearch_searchHint="Cari ruangan"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
             android:layout_above="@id/mapview"
             />
     </FrameLayout>

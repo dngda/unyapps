@@ -1,0 +1,44 @@
+{
+  "musholas" : [
+    {
+      "nama" : "Mushola Al Mustofa",
+      "lat" : "-7.77130",
+      "long" : "110.38753"
+    },
+    {
+      "nama" : "Mushola Fakultas Teknik",
+      "lat" : "-7.76935",
+      "long" : "110.38791"
+    },
+    {
+      "nama" : "Mushola Rektorat UNY",
+      "lat" : "-7.77530",
+      "long" : "110.38724"
+    },
+    {
+      "nama" : "Mushola Al Rolam",
+      "lat" : "-7.77500",
+      "long" : "110.38762"
+    },
+    {
+      "nama" : "Mushola Fakultas Ekonomi",
+      "lat" : "-7.77351",
+      "long" : "110.38571"
+    },
+    {
+      "nama" : "Masjid Al Mujahidin",
+      "lat" : "-7.77429",
+      "long" : "110.38493"
+    },
+    {
+      "nama" : "Mushola FBS",
+      "lat" : "-7.77304",
+      "long" : "110.38364"
+    },
+    {
+      "nama" : "Mushola FBS",
+      "lat" : "-7.77332",
+      "long" : "110.38773"
+    }
+  ]
+}

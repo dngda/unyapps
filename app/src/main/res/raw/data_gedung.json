@@ -1,0 +1,258 @@
+{"gedungs" : [
+  {
+    "nama_gedung": "LIMUNY",
+    "latitude": -7.77231,
+    "longitude": 110.38699,
+    "lat_route" : -7.77231,
+    "long_route" : 110.38699,
+    "url_gmaps" : "Limuny+(Layanan+Internet+Mahasiswa)+UNY/@-7.7723107,110.3864079,19z/data=!4m12!1m6!3m5!1s0x2e7a59c300000001:0xd7b291ca65633404!2sLimuny+(Layanan+Internet+Mahasiswa)+UNY!8m2!3d-7.7724374!4d110.3869737!3m4!1s0x2e7a59c300000001:0xd7b291ca65633404!8m2!3d-7.7724374!4d110.3869737",
+    "uri_image":"limuny_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "LIMUNY 1"
+      },
+      {
+        "nama_ruangan": "LIMUNY 2"
+      },
+      {
+        "nama_ruangan": "LIMUNY 3"
+      },
+      {
+        "nama_ruangan": "LIMUNY 4"
+      },
+      {
+        "nama_ruangan": "LIMUNY 5"
+      },
+      {
+        "nama_ruangan": "LIMUNY 6"
+      },
+      {
+        "nama_ruangan": "LIMUNY 7"
+      },
+      {
+        "nama_ruangan": "LIMUNY 8"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Pendidikan Teknik Mesin Fakultas Teknik UNY",
+    "latitude": -7.77014,
+    "longitude": 110.38721,
+    "lat_route" : -7.77024,
+    "long_route" : 110.38761,
+    "url_gmaps" : "KPLT+Fakultas+Teknik+UNY/@-7.7692274,110.3875773,19z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59c300000001:0xb4371ed577a865cb!8m2!3d-7.7692274!4d110.3881245",
+    "uri_image":"mesin",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Mesin"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Pendidikan Teknik Boga dan Busana Fakultas Teknik UNY",
+    "latitude": -7.76901,
+    "longitude": 110.38752,
+    "lat_route" : -7.76906,
+    "long_route" : 110.38774,
+    "url_gmaps" : "KPLT+Fakultas+Teknik+UNY/@-7.7692274,110.3875773,19z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59c300000001:0xb4371ed577a865cb!8m2!3d-7.7692274!4d110.3881245",
+    "uri_image":"ft_lab_ptbb_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Pendidikan Teknik Boga dan Busana"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Kuliah Timur Fakultasi Ilmu Sosial UNY",
+    "latitude": -7.77360,
+    "longitude": 110.38825,
+    "lat_route" : -7.77326,
+    "long_route" : 110.38765,
+    "url_gmaps" : "Fakultas+Ilmu+Sosial+(FIS)+Universitas+Negeri+Yogyakarta/@-7.7737184,110.3869862,19.78z/data=!4m5!3m4!1s0x2e7a59b633746023:0x3a68dcb2aface6a5!8m2!3d-7.7735081!4d110.3873125",
+    "uri_image":"fis_fisnet_2_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Laboratorium Komputer FISNET FIS UNY Lantai 2"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung PKM Fakultas Ilmu Sosial UNY",
+    "latitude": -7.77359,
+    "longitude": 110.38843,
+    "lat_route" : -7.77326,
+    "long_route" : 110.38765,
+    "url_gmaps" : "Fakultas+Ilmu+Sosial+(FIS)+Universitas+Negeri+Yogyakarta/@-7.7737184,110.3869862,19.78z/data=!4m5!3m4!1s0x2e7a59b633746023:0x3a68dcb2aface6a5!8m2!3d-7.7735081!4d110.3873125",
+    "uri_image":"fis_fisnet_1_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Digital Library Fakultas Ilmu Sosial UNY Lantai 3"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Dekanat Fakultas Ekonomi UNY",
+    "latitude": -7.77318,
+    "longitude": 110.38663,
+    "lat_route" : -7.77301,
+    "long_route" : 110.38648,
+    "url_gmaps" : "Fakultas+Ekonomi+(FE)+Universitas+Negeri+Yogyakarta/@-7.7730581,110.3843373,17z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59b6385c6689:0xf454acf5b147393f!8m2!3d-7.7730581!4d110.386526",
+    "uri_image":"fe_lab_bahasa_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Bahasa Fakultas Ekonomi UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Lembaga Pengembangan dan Penjaminan Mutu Pendidikan UNY",
+    "latitude": -7.77242,
+    "longitude": 110.38665,
+    "lat_route" : -7.77257,
+    "long_route" : 110.38655,
+    "url_gmaps" : "LPPMP+Universitas+Negeri+Yogyakarta/@-7.7723802,110.3862651,19.74z/data=!4m5!3m4!1s0x2e7a59b65ac6451b:0xd5c17328970c7637!8m2!3d-7.7725347!4d110.3865543",
+    "uri_image":"lppmp_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab LPPMP UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Kuliah 2 Fakultas Bahasa dan Seni UNY",
+    "latitude": -7.77404,
+    "longitude": 110.38381,
+    "lat_route" : -7.77402,
+    "long_route" : 110.38357,
+    "url_gmaps" : "Gedung+Kuliah+2+Fakultas+Budaya+Dan+Seni+Universitas+Negeri+Yogyakarta/@-7.7738961,110.3831342,18z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59de103a202b:0x23260c0c91a69f87!8m2!3d-7.7738961!4d110.3837606",
+    "uri_image":"fbs_gk_2_min",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Komputer Fakultas Bahasa dan Seni UNY"
+      },
+      {
+        "nama_ruangan": "Lab Citra Fakultas Bahasa dan Seni UNY"
+      },
+      {
+        "nama_ruangan": "Dream Lab Fakultas Bahasa dan Seni UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Dekanat Fakultas Ilmu Pendidikan UNY",
+    "latitude": -7.77474,
+    "longitude": 110.38748,
+    "lat_route" : -7.77474,
+    "long_route" : 110.38748,
+    "url_gmaps" : "Fakultas+Ilmu+Pendidikan+(FIP)+Universitas+Negeri+Yogyakarta/@-7.7747014,110.385342,17z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59c82673464b:0xdf19e17fa20a007e!8m2!3d-7.7747014!4d110.3875307",
+    "uri_image":"gedung_dekanat_fip",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Fakultas FIP UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Selatan Fakultas Ilmu Pendidikan UNY",
+    "latitude": -7.77473,
+    "longitude": 110.38809,
+    "lat_route" : -7.77474,
+    "long_route" : 110.38748,
+    "url_gmaps" : "Fakultas+Ilmu+Pendidikan+(FIP)+Universitas+Negeri+Yogyakarta/@-7.7747014,110.385342,17z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59c82673464b:0xdf19e17fa20a007e!8m2!3d-7.7747014!4d110.3875307",
+    "uri_image":"gedung_dekanat_fip",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Manajemen Pendidikan FIP UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Lab Fisika Fakultas Matematika dan Ilmu Pengetahuan Alam UNY",
+    "latitude": -7.77513,
+    "longitude": 110.38488,
+    "lat_route" : -7.77501,
+    "long_route" : 110.38463,
+    "url_gmaps" : "Laboratorium+Fisika+FMIPA+UNY/@-7.7750446,110.383956,18z/data=!3m1!4b1!4m12!1m6!3m5!1s0x2e7a59c905cc8db3:0xe7bd3f93a5a6b671!2sFakultas+Matematika+dan+Ilmu+Pengetahuan+Alam+(FMIPA)+Universitas+Negeri+Yogyakarta!8m2!3d-7.7745761!4d110.3855684!3m4!1s0x2e7a59c9f87567fb:0x819b6e29fb8e9d6d!8m2!3d-7.7750446!4d110.3846397",
+    "uri_image":"fmipa",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Fisika FMIPA UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Lab Matematika Fakultas Matematika dan Ilmu Pengetuahuan Alam UNY",
+    "latitude": -7.77537,
+    "longitude": 110.38487,
+    "lat_route" : -7.77501,
+    "long_route" : 110.38463,
+    "url_gmaps" : "Laboratorium+Fisika+FMIPA+UNY/@-7.7750446,110.383956,18z/data=!3m1!4b1!4m12!1m6!3m5!1s0x2e7a59c905cc8db3:0xe7bd3f93a5a6b671!2sFakultas+Matematika+dan+Ilmu+Pengetahuan+Alam+(FMIPA)+Universitas+Negeri+Yogyakarta!8m2!3d-7.7745761!4d110.3855684!3m4!1s0x2e7a59c9f87567fb:0x819b6e29fb8e9d6d!8m2!3d-7.7750446!4d110.3846397",
+    "uri_image":"fmipa",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Matematika lt 3 FMIPA UNY"
+      },
+      {
+        "nama_ruangan": "Lab Matematika lt 2 FMIPA UNY"
+      },
+      {
+        "nama_ruangan": "Lab IPA FMIPA UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Lab Kimia Fakultas Matematika dan Ilmu Pengetahuan Alam UNY",
+    "latitude": -7.77531,
+    "longitude": 110.38419,
+    "lat_route" : -7.77501,
+    "long_route" : 110.38463,
+    "url_gmaps" : "Laboratorium+Fisika+FMIPA+UNY/@-7.7750446,110.383956,18z/data=!3m1!4b1!4m12!1m6!3m5!1s0x2e7a59c905cc8db3:0xe7bd3f93a5a6b671!2sFakultas+Matematika+dan+Ilmu+Pengetahuan+Alam+(FMIPA)+Universitas+Negeri+Yogyakarta!8m2!3d-7.7745761!4d110.3855684!3m4!1s0x2e7a59c9f87567fb:0x819b6e29fb8e9d6d!8m2!3d-7.7750446!4d110.3846397",
+    "uri_image":"fmipa",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Kimia FMIPA UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Gedung Lab Biologi Fakultas Matematika dan Ilmu Pengetahuan Alam UNY",
+    "latitude": -7.77559,
+    "longitude": 110.38461,
+    "lat_route" : -7.77501,
+    "long_route" : 110.38463,
+    "url_gmaps" : "Laboratorium+Fisika+FMIPA+UNY/@-7.7750446,110.383956,18z/data=!3m1!4b1!4m12!1m6!3m5!1s0x2e7a59c905cc8db3:0xe7bd3f93a5a6b671!2sFakultas+Matematika+dan+Ilmu+Pengetahuan+Alam+(FMIPA)+Universitas+Negeri+Yogyakarta!8m2!3d-7.7745761!4d110.3855684!3m4!1s0x2e7a59c9f87567fb:0x819b6e29fb8e9d6d!8m2!3d-7.7750446!4d110.3846397",
+    "uri_image":"fmipa",
+    "ruangs": [
+      {
+        "nama_ruangan": "Lab Biologi FMIPA UNY"
+      }
+    ]
+  },
+  {
+    "nama_gedung": "Digital Library Universitas Negeri Yogyakarta",
+    "latitude": -7.77528,
+    "longitude": 110.38693,
+    "lat_route" : -7.77528,
+    "long_route" : 110.38693,
+    "url_gmaps" : "Perpustakaan+Digital+UNY/@-7.7752687,110.3859503,18z/data=!3m1!4b1!4m5!3m4!1s0x2e7a59b6b73bc90b:0x89018654bbcdf500!8m2!3d-7.7752687!4d110.3870446",
+    "uri_image":"digital_library",
+    "ruangs": [
+      {
+        "nama_ruangan": "Basement A Digilib UNY"
+      },
+      {
+        "nama_ruangan": "Basement B Digilib UNY"
+      },
+      {
+        "nama_ruangan": "Lantai 2 A Digilib UNY"
+      },
+      {
+        "nama_ruangan": "Lantai 2 B Digilib UNY"
+      },
+      {
+        "nama_ruangan": "Lantai 3 Digilib UNY"
+      }
+    ]
+  }
+]
+}
