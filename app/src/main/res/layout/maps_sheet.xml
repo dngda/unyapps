@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/sheet"
+        android:background="@color/colorAccent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="100dp"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+    <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:background="#ffffffff"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="FIS UNY"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:textColor="#6979f8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <ImageView
+                    android:layout_marginTop="10dp"
+                    android:src="#26202020"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp" />
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:text="Room available"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                <LinearLayout
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:src="@color/colorPrimary"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    <TextView
+                            android:layout_marginLeft="10dp"
+                            android:text="Didital librari"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                    app:cardElevation="0dp"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#6979f8"
+                    app:cardCornerRadius="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" >
+                <LinearLayout
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:text="DIRECTION"
+                            android:textStyle="bold"
+                            android:textColor="#ffffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    <ImageView
+                            android:src="@color/colorAccent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

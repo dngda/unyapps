@@ -29,7 +29,7 @@ interface NewsApi {
 
             return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("http://uny-api.herokuapp.com/api/university/news/")
+                .baseUrl("https://uny-api.herokuapp.com/api/university/news/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(NewsApi::class.java)
