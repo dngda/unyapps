@@ -1,4 +1,4 @@
-package id.infiniteuny.apps.ui.home
+package id.infiniteuny.apps.ui.home.news
 
 import com.xwray.groupie.databinding.BindableItem
 import id.infiniteuny.apps.R

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="250dp"
     app:cardBackgroundColor="@color/violet"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/adapter_backImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="#AA000000"
+        android:backgroundTintMode="src_over"
+        tools:background="@tools:sample/backgrounds/scenic">
 
         <ImageView
             android:id="@+id/adapter_next"
@@ -36,12 +41,12 @@
             android:id="@+id/adapter_jumlah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="28dp"
             android:fontFamily="@font/roboto_medium"
             android:text="12"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
@@ -62,11 +67,11 @@
             android:id="@+id/adapter_fakultas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Fakultas Teknik"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package id.infiniteuny.apps.data.db
+package id.infiniteuny.apps.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

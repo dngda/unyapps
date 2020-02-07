@@ -14,13 +14,15 @@ import id.infiniteuny.apps.util.Coroutines
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val MINIMUM_INTERVAL = 6
-
 class NewsRepository(
     private val api: NewsApi,
     private val db: AppDatabase,
     private val prefs: PreferenceProvider
 ) : SafeApiRequest() {
+
+    companion object {
+        private const val MINIMUM_INTERVAL = 6
+    }
 
     private val newsList = MutableLiveData<List<News>>()
     private var newsContent: NewsContent? = null
@@ -46,7 +48,7 @@ class NewsRepository(
     }
 
     private suspend fun fetchNews(page: Int) {
-        val lastSavedAt = prefs.getLastSavedAt()
+        val lastSavedAt = prefs.getNewsLastSavedAt()
         if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt)) {
             try {
                 var response = apiRequest {
@@ -66,22 +68,19 @@ class NewsRepository(
     }
 
     private suspend fun fetchNewsContent(link: String) {
-        val lastSavedAt = prefs.getContentLastSavedAt()
-        if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt)) {
-            try {
-                var response = apiRequest {
+        try {
+            var response = apiRequest {
+                api.getNewsContent(link)
+            }
+            while (response.status != "200") {
+                response = apiRequest {
                     api.getNewsContent(link)
                 }
-                while (response.status != "200") {
-                    response = apiRequest {
-                        api.getNewsContent(link)
-                    }
-                }
-                newsContent = response.result
-            } catch (e: ApiException) {
-                Log.d("FetchError", e.message!!)
-                fetchNewsContent(link)
             }
+            newsContent = response.result
+        } catch (e: ApiException) {
+            Log.d("FetchError", e.message!!)
+            fetchNewsContent(link)
         }
     }
 
@@ -91,7 +90,7 @@ class NewsRepository(
 
     private fun saveNews(newsList: List<News>) {
         Coroutines.io {
-            prefs.saveLastSavedAt(System.currentTimeMillis().toString())
+            prefs.saveNewsLastSavedAt(System.currentTimeMillis().toString())
             db.getNewsDao().saveAllNews(newsList)
         }
     }

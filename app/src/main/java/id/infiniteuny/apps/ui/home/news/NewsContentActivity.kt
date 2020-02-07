@@ -1,4 +1,4 @@
-package id.infiniteuny.apps.ui.home
+package id.infiniteuny.apps.ui.home.news
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.databinding.ActivityNewsContentBinding
-import kotlinx.android.synthetic.main.activity_news_content.*
+import id.infiniteuny.apps.util.NoInternetException
+import id.infiniteuny.apps.util.snackBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsContentActivity : AppCompatActivity() {
@@ -22,32 +23,37 @@ class NewsContentActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_news_content)
         binding.viewModel = mViewModel
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
 
         val newsLink = intent.getStringExtra("newsLink")
 
-        mViewModel.getNewsLink(newsLink!!)
+        try {
+            mViewModel.getNewsLink(newsLink!!)
+        } catch (e: NoInternetException) {
+            binding.root.snackBar(e.message!!)
+        }
+
 
         mViewModel.newsContent.observe(this, Observer {
             if (it != null) {
-                shimmer_content.stopShimmer()
-                shimmer_content.visibility = View.GONE
+                binding.shimmerContent.stopShimmer()
+                binding.shimmerContent.visibility = View.GONE
             }
             Log.d("respon hasil", it.toString())
-            content_date.text = it.created_date
-            content_title.text = it.title
-            content_isi.text = it.content
+            binding.contentDate.text = it.created_date
+            binding.contentTitle.text = it.title
+            binding.contentIsi.text = it.content
             Glide.with(this)
                 .load(it.featured_image)
-                .centerCrop().into(content_headerIV)
+                .centerCrop().into(binding.contentHeaderIV)
         })
 
-        fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }

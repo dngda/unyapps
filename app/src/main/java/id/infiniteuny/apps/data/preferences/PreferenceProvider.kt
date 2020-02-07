@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
-private const val KEY_SAVED_AT = "saved_at"
-private const val KEY_CONTENT_SAVED_AT = "content_saved_at"
+private const val KEY_NEWS_SAVED_AT = "news_list"
+private const val KEY_ANNOUNCEMENT_SAVED_AT = "announcement_list"
 
 class PreferenceProvider(
     context: Context
@@ -15,19 +15,20 @@ class PreferenceProvider(
     private val preference: SharedPreferences
         get() = PreferenceManager.getDefaultSharedPreferences(appContext)
 
-    fun saveLastSavedAt(savedAt: String) {
-        preference.edit().putString(KEY_SAVED_AT, savedAt).apply()
+    fun saveNewsLastSavedAt(savedAt: String) {
+        preference.edit().putString(KEY_NEWS_SAVED_AT, savedAt).apply()
     }
 
-    fun saveContentLastSavedAt(savedAt: String) {
-        preference.edit().putString(KEY_CONTENT_SAVED_AT, savedAt).apply()
+    fun getNewsLastSavedAt(): String? {
+        return preference.getString(KEY_NEWS_SAVED_AT, null)
     }
 
-    fun getLastSavedAt(): String? {
-        return preference.getString(KEY_SAVED_AT, null)
+    fun saveAnnouncementLastSavedAt(savedAt: String) {
+        preference.edit().putString(KEY_ANNOUNCEMENT_SAVED_AT, savedAt).apply()
     }
 
-    fun getContentLastSavedAt(): String? {
-        return preference.getString(KEY_CONTENT_SAVED_AT, null)
+    fun getAnnouncementLastSavedAt(): String? {
+        return preference.getString(KEY_ANNOUNCEMENT_SAVED_AT, null)
     }
+
 }

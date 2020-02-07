@@ -6,7 +6,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import id.infiniteuny.apps.R
-import id.infiniteuny.apps.util.applyTransparentStatusBar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.applyTransparentStatusBar()
+//        window.applyTransparentStatusBar()
 
         val navController = Navigation.findNavController(this, R.id.fragment_container)
         bot_navigation.setupWithNavController(navController)

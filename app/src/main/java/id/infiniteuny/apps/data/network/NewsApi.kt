@@ -1,5 +1,6 @@
 package id.infiniteuny.apps.data.network
 
+import id.infiniteuny.apps.data.network.responses.AnnouncementResponse
 import id.infiniteuny.apps.data.network.responses.NewsContentResponse
 import id.infiniteuny.apps.data.network.responses.NewsResponse
 import okhttp3.OkHttpClient
@@ -29,16 +30,19 @@ interface NewsApi {
 
             return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("http://uny-api.herokuapp.com/api/university/news/")
+                .baseUrl("https://uny-api.herokuapp.com/api/university/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(NewsApi::class.java)
         }
     }
 
-    @GET("page/{page}")
+    @GET("news/page/{page}")
     suspend fun getNews(@Path("page") page: Int): Response<NewsResponse>
 
-    @GET("open")
+    @GET("news/open")
     suspend fun getNewsContent(@Query("link") link: String): Response<NewsContentResponse>
+
+    @GET("announcement/page/{page}")
+    suspend fun getAnnouncement(@Path("page") page: Int): Response<AnnouncementResponse>
 }

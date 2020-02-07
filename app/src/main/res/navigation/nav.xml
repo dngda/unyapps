@@ -8,7 +8,11 @@
         android:id="@+id/homeFragment"
         android:name="id.infiniteuny.apps.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_moreNewsFragment"
+            app:destination="@id/moreNewsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="id.infiniteuny.apps.ui.maps.MapsFragment"
@@ -19,4 +23,9 @@
         android:name="id.infiniteuny.apps.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/moreNewsFragment"
+        android:name="id.infiniteuny.apps.ui.home.news.MoreNewsFragment"
+        android:label="more_news_fragment"
+        tools:layout="@layout/more_news_fragment" />
 </navigation>
