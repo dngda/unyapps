@@ -1,0 +1,49 @@
+{
+  "parkirs" : [
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77192",
+      "long" : "110.38761"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77456",
+      "long" : "110.38409"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77275",
+      "long" : "110.38636"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77530",
+      "long" : "110.38665"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77330",
+      "long" : "110.38797"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77312",
+      "long" : "110.38679"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77522",
+      "long" : "110.38875"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.77235",
+      "long" : "110.38689"
+    },
+    {
+      "nama" : "Tempat Parkir",
+      "lat" : "-7.76942",
+      "long" : "110.38763"
+    }
+  ]
+}
