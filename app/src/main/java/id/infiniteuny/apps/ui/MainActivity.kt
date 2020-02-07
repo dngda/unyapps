@@ -18,7 +18,6 @@ import androidx.preference.PreferenceManager
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.data.gps.GpsService
 import id.infiniteuny.apps.ui.maps.MapsView
-import id.infiniteuny.apps.util.applyTransparentStatusBar
 import id.infiniteuny.apps.util.logD
 import id.infiniteuny.apps.util.logE
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.applyTransparentStatusBar()
+//        window.applyTransparentStatusBar()
 
         val navController = Navigation.findNavController(this, R.id.fragment_container)
         bot_navigation.setupWithNavController(navController)
