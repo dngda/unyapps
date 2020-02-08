@@ -14,7 +14,7 @@ interface AnnouncementDao {
     fun saveAllAnnouncement(announcement: List<Announcement>)
 
     @Query("SELECT * FROM Announcement")
-    fun getAnnouncement(): LiveData<List<Announcement>>
+    fun getAnnouncementList(): LiveData<List<Announcement>>
 
     @Query("SELECT * FROM Announcement LIMIT 3")
     fun getLast3Announcement(): LiveData<List<Announcement>>

@@ -35,8 +35,15 @@ class NewsRepository(
 
     suspend fun getLastNews(page: Int): LiveData<List<News>> {
         return withContext(Dispatchers.IO) {
-            fetchNews(page)
+            fetchNews(page, false)
             db.getNewsDao().getLast3News()
+        }
+    }
+
+    suspend fun getNewsList(page: Int, fetch: Boolean): LiveData<List<News>> {
+        return withContext(Dispatchers.IO) {
+            fetchNews(page, fetch)
+            db.getNewsDao().getNewsList()
         }
     }
 
@@ -47,9 +54,9 @@ class NewsRepository(
         }
     }
 
-    private suspend fun fetchNews(page: Int) {
+    private suspend fun fetchNews(page: Int, fetch: Boolean) {
         val lastSavedAt = prefs.getNewsLastSavedAt()
-        if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt)) {
+        if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt) || fetch) {
             try {
                 var response = apiRequest {
                     api.getNews(page)
@@ -62,7 +69,7 @@ class NewsRepository(
                 newsList.postValue(response.results)
             } catch (e: ApiException) {
                 Log.d("FetchError", e.message!!)
-                fetchNews(page)
+                fetchNews(page, true)
             }
         }
     }

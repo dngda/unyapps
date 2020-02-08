@@ -11,6 +11,7 @@ import id.infiniteuny.apps.data.repositories.UserRepository
 import id.infiniteuny.apps.ui.auth.AuthViewModel
 import id.infiniteuny.apps.ui.auth.adapter.LoginSliderAdapter
 import id.infiniteuny.apps.ui.home.HomeViewModel
+import id.infiniteuny.apps.ui.home.announcement.MoreAnnouncementViewModel
 import id.infiniteuny.apps.ui.home.news.MoreNewsViewModel
 import id.infiniteuny.apps.ui.home.news.NewsContentViewModel
 import id.infiniteuny.apps.ui.profile.ProfileViewModel
@@ -41,7 +42,8 @@ class UNYApplication : Application() {
                 viewModel { HomeViewModel(get(), get()) }
                 viewModel { NewsContentViewModel(get()) }
                 viewModel { ProfileViewModel(get()) }
-                viewModel { MoreNewsViewModel() }
+                viewModel { MoreNewsViewModel(get()) }
+                viewModel { MoreAnnouncementViewModel(get()) }
             })
         }
     }

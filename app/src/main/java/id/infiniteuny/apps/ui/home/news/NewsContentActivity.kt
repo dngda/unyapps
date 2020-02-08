@@ -1,5 +1,6 @@
 package id.infiniteuny.apps.ui.home.news
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.databinding.ActivityNewsContentBinding
 import id.infiniteuny.apps.util.NoInternetException
@@ -53,9 +53,15 @@ class NewsContentActivity : AppCompatActivity() {
                 .centerCrop().into(binding.contentHeaderIV)
         })
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.fab.setOnClickListener {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "https://uny.ac.id$newsLink" + " via " + getString(R.string.app_name)
+            )
+            val intentChooser = Intent.createChooser(shareIntent, "Share")
+            startActivity(intentChooser)
         }
     }
 

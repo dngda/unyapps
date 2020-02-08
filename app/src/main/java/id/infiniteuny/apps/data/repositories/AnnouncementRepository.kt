@@ -34,21 +34,21 @@ class AnnouncementRepository(
 
     suspend fun getLastAnnouncement(page: Int): LiveData<List<Announcement>> {
         return withContext(Dispatchers.IO) {
-            fetchAnnouncement(page)
+            fetchAnnouncement(page, false)
             db.getAnnouncementDao().getLast3Announcement()
         }
     }
 
-//    suspend fun getNewsContent(link: String): NewsContent {
-//        return withContext(Dispatchers.IO) {
-//            fetchNewsContent(link)
-//            newsContent!!
-//        }
-//    }
+    suspend fun getAnnouncementList(page: Int, forceFetch: Boolean): LiveData<List<Announcement>> {
+        return withContext(Dispatchers.IO) {
+            fetchAnnouncement(page, forceFetch)
+            db.getAnnouncementDao().getAnnouncementList()
+        }
+    }
 
-    private suspend fun fetchAnnouncement(page: Int) {
+    private suspend fun fetchAnnouncement(page: Int, forceFetch: Boolean) {
         val lastSavedAt = prefs.getAnnouncementLastSavedAt()
-        if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt)) {
+        if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt) || forceFetch) {
             try {
                 var response = apiRequest {
                     api.getAnnouncement(page)
@@ -61,27 +61,10 @@ class AnnouncementRepository(
                 announcementList.postValue(response.results)
             } catch (e: ApiException) {
                 Log.d("FetchError", e.message!!)
-                fetchAnnouncement(page)
+                fetchAnnouncement(page, true)
             }
         }
     }
-
-//    private suspend fun fetchNewsContent(link: String) {
-//        try {
-//            var response = apiRequest {
-//                api.getNewsContent(link)
-//            }
-//            while (response.status != "200") {
-//                response = apiRequest {
-//                    api.getNewsContent(link)
-//                }
-//            }
-//            newsContent = response.result
-//        } catch (e: ApiException) {
-//            Log.d("FetchError", e.message!!)
-//            fetchNewsContent(link)
-//        }
-//    }
 
     private fun isFetchNeeded(lastSavedAt: String): Boolean {
         return System.currentTimeMillis() - lastSavedAt.toLong() > 1000 * 3600 * MINIMUM_INTERVAL

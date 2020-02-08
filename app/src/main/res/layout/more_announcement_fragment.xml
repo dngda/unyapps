@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.news.MoreNewsFragment">
+    tools:context=".ui.home.announcement.MoreAnnouncementFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/more_root"
@@ -20,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_moreBerita"
+                android:id="@+id/toolbar_morePengumuman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
@@ -31,7 +31,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_more_berita"
+            android:id="@+id/shimmer_more_pengumuman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,7 +65,7 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fm_more_RvBerita"
+            android:id="@+id/fm_more_RvPengumuman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"

@@ -1,4 +1,4 @@
-package id.infiniteuny.apps.ui.home.news
+package id.infiniteuny.apps.ui.home.announcement
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,33 +14,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import id.infiniteuny.apps.R
-import id.infiniteuny.apps.data.db.entities.News
+import id.infiniteuny.apps.data.db.entities.Announcement
 import id.infiniteuny.apps.util.ApiException
 import id.infiniteuny.apps.util.Coroutines
 import id.infiniteuny.apps.util.NoInternetException
 import id.infiniteuny.apps.util.snackBar
-import kotlinx.android.synthetic.main.more_news_fragment.*
+import kotlinx.android.synthetic.main.more_announcement_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoreNewsFragment : Fragment() {
-    private val mViewModel: MoreNewsViewModel by viewModel()
+class MoreAnnouncementFragment : Fragment() {
+    private val mViewModel: MoreAnnouncementViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.more_news_fragment, container, false)
+        return inflater.inflate(R.layout.more_announcement_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindUI()
-        toolbar_moreBerita.title = "Berita"
+        toolbar_morePengumuman.title = "Pengumuman"
         (activity as AppCompatActivity).apply {
-            setSupportActionBar(toolbar_moreBerita)
+            setSupportActionBar(toolbar_morePengumuman)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowHomeEnabled(true)
-            toolbar_moreBerita.setNavigationOnClickListener {
+            toolbar_morePengumuman.setNavigationOnClickListener {
                 onBackPressed()
             }
         }
@@ -50,12 +50,12 @@ class MoreNewsFragment : Fragment() {
     @SuppressLint("FragmentLiveDataObserve")
     private fun bindUI() = Coroutines.main {
         try {
-            mViewModel.newsList.await().observe(this, Observer {
-                shimmer_more_berita.apply {
+            mViewModel.announcementList.await().observe(this, Observer {
+                shimmer_more_pengumuman.apply {
                     stopShimmer()
                     visibility = View.INVISIBLE
                 }
-                initNewsRecyclerView(it.toNewsItem())
+                initAnnouncementRecyclerView(it.toAnnouncementItem())
             })
 
         } catch (e: ApiException) {
@@ -66,21 +66,21 @@ class MoreNewsFragment : Fragment() {
 
     }
 
-    private fun initNewsRecyclerView(newsItem: List<NewsItem>) {
+    private fun initAnnouncementRecyclerView(newsItem: List<AnnouncementItem>) {
         val mAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(newsItem)
         }
 
-        fm_more_RvBerita.apply {
+        fm_more_RvPengumuman.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = mAdapter
         }
 
         mAdapter.setOnItemClickListener { item, view ->
-            val uit = item as NewsItem
-            Intent(view.context, NewsContentActivity::class.java).also {
-                it.putExtra("newsLink", uit.news.link)
+            val uit = item as AnnouncementItem
+            Intent(view.context, AnnouncementContentActivity::class.java).also {
+                it.putExtra("link", uit.announcement.link)
                 startActivity(it)
             }
         }
@@ -88,8 +88,8 @@ class MoreNewsFragment : Fragment() {
     }
 }
 
-private fun List<News>.toNewsItem(): List<NewsItem> {
+private fun List<Announcement>.toAnnouncementItem(): List<AnnouncementItem> {
     return this.map {
-        NewsItem(it)
+        AnnouncementItem(it)
     }
 }
