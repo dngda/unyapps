@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_moreNewsFragment"
             app:destination="@id/moreNewsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_moreAnnouncementFragment"
+            app:destination="@id/moreAnnouncementFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -28,4 +31,9 @@
         android:name="id.infiniteuny.apps.ui.home.news.MoreNewsFragment"
         android:label="more_news_fragment"
         tools:layout="@layout/more_news_fragment" />
+    <fragment
+        android:id="@+id/moreAnnouncementFragment"
+        android:name="id.infiniteuny.apps.ui.home.announcement.MoreAnnouncementFragment"
+        android:label="more_announcement_fragment"
+        tools:layout="@layout/more_announcement_fragment" />
 </navigation>

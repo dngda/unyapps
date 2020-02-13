@@ -15,7 +15,8 @@ import id.infiniteuny.apps.data.db.entities.User
 
 @Database(
     entities = [User::class, News::class, NewsContent::class, Announcement::class],
-    version = 3
+    version = 3,
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 

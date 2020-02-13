@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.data.db.entities.Announcement
 import id.infiniteuny.apps.data.db.entities.News
+import id.infiniteuny.apps.ui.home.announcement.AnnouncementContentActivity
 import id.infiniteuny.apps.ui.home.announcement.AnnouncementItem
 import id.infiniteuny.apps.ui.home.news.NewsContentActivity
 import id.infiniteuny.apps.ui.home.news.NewsItem
@@ -43,6 +45,13 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         toolbar_home.title = "Home"
         bindUI()
+
+        fm_home_moreBerita.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_moreNewsFragment)
+        }
+        fm_home_morePengumuman.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_moreAnnouncementFragment)
+        }
     }
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -105,13 +114,13 @@ class HomeFragment : Fragment() {
             adapter = mAdapter
         }
 
-//        mAdapter.setOnItemClickListener { item, view ->
-//            val uit = item as NewsItem
-//            Intent(view.context, NewsContentActivity::class.java).also {
-//                it.putExtra("newsLink", uit.news.link)
-//                startActivity(it)
-//            }
-//        }
+        mAdapter.setOnItemClickListener { item, view ->
+            val uit = item as AnnouncementItem
+            Intent(view.context, AnnouncementContentActivity::class.java).also {
+                it.putExtra("link", uit.announcement.link)
+                startActivity(it)
+            }
+        }
 
     }
 

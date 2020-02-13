@@ -22,7 +22,7 @@ class FacultyAdapter(private val list: List<Faculty>, private val context: Conte
         val view = LayoutInflater.from(context).inflate(R.layout.item_img_slider, null)
         val title = view.adapter_fakultas
 
-        title.text = list[position].title
+        //title.text = list[position].title
 
         container.addView(view, 0)
 

@@ -13,11 +13,9 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllNews(news: List<News>)
 
-    @Query("SELECT * FROM News")
-    fun getNews(): LiveData<List<News>>
-
     @Query("SELECT * FROM News LIMIT 3")
     fun getLast3News(): LiveData<List<News>>
 
-
+    @Query("SELECT * FROM News")
+    fun getNewsList(): LiveData<List<News>>
 }

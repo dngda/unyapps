@@ -1,275 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cs"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapview"
+    android:layout_height="match_parent">
+
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </org.osmdroid.views.MapView>
+
+
+
+    <com.arlib.floatingsearchview.FloatingSearchView
+        android:id="@+id/searching"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <LinearLayout
-        android:layout_marginTop="90dp"
-        android:layout_gravity="top|end"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:floatingSearch_close_search_on_keyboard_dismiss="true"
+        app:floatingSearch_leftActionMode="showSearch"
+        app:floatingSearch_searchHint="Cari ruangan"
+        app:floatingSearch_showSearchKey="true"
+        app:floatingSearch_suggestionsListAnimDuration="250"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></com.arlib.floatingsearchview.FloatingSearchView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabmyLocation"
         android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            app:tint="@color/violet"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_location"
-            android:layout_width="wrap_content"
-            app:fabSize="mini"
-            android:scaleType="center"
-            android:id="@+id/fabmyLocation"
-            android:layout_margin="16dp"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_location"
+        app:backgroundTint="#ffffffff"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="@id/cs"
+        app:layout_constraintTop_toTopOf="@+id/searching"
+        app:tint="@color/violet" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            android:layout_gravity="bottom|end"
-            app:tint="@color/violet"
-            android:src="@drawable/ic_gedung"
-            android:layout_width="wrap_content"
-            app:fabSize="mini"
-            android:id="@+id/fabBuilding"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            app:tint="@color/violet"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_parking"
-            android:layout_width="wrap_content"
-            app:fabSize="mini"
-            android:id="@+id/fabParking"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:tint="@color/violet"
-            app:backgroundTint="#ffffffff"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_masjid"
-            android:layout_width="wrap_content"
-            app:fabSize="mini"
-            android:id="@+id/fabMosque"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="80dp"
-        android:id="@+id/laytipe"
-        android:layout_gravity="bottom|center"
-        android:visibility="gone"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBuilding"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_directions_walk_grey"
-            android:layout_width="wrap_content"
-            app:fabSize="normal"
-            android:scaleType="center"
-            app:tint="@color/colorPrimary"
-            android:id="@+id/fabwalk"
-            android:layout_margin="16dp"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_gedung"
+        app:backgroundTint="#ffffffff"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="@id/cs"
+        app:layout_constraintTop_toBottomOf="@+id/fabmyLocation"
+        app:tint="@color/violet" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_directions_bike_grey"
-            android:layout_width="wrap_content"
-            app:fabSize="normal"
-            android:id="@+id/fabbike"
-            app:tint="@color/colorPrimary"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            app:tint="@color/colorPrimary"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_direction_motorcycle_grey"
-            android:layout_width="wrap_content"
-            app:fabSize="normal"
-            android:id="@+id/fabmoto"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            app:elevation="3dp"
-            app:backgroundTint="#ffffffff"
-            app:tint="@color/colorPrimary"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_directions_car_grey"
-            android:layout_width="wrap_content"
-            app:fabSize="normal"
-            android:id="@+id/fabcar"
-            android:layout_margin="16dp"
-            android:scaleType="center"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabParking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_parking"
+        app:backgroundTint="#ffffffff"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="@id/cs"
+        app:layout_constraintTop_toBottomOf="@+id/fabBuilding"
+        app:tint="@color/violet" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMosque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_masjid"
+        app:backgroundTint="#ffffffff"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="@id/cs"
+        app:layout_constraintTop_toBottomOf="@+id/fabParking"
+        app:tint="@color/violet" />
+
     <LinearLayout
-        android:layout_gravity="bottom"
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:visibility="gone"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffffff"
             app:cardCornerRadius="5dp"
             app:cardElevation="1dp"
-            app:cardUseCompatPadding="true"
-            android:background="#ffffffff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:cardUseCompatPadding="true">
+
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_margin="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
                 <TextView
-                    android:text="FIS UNY"
                     android:id="@+id/gedung_name"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#6979f8"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="FIS UNY"
+                    android:textColor="#6979f8"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
                     <TextView
-                        android:layout_marginTop="5dp"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
                         android:id="@+id/roomAvv"
-                        android:text="Room available"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Room available"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="5dp"
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:orientation="horizontal">
+
                         <ImageView
-                            android:src="@drawable/ic_gedung"
                             android:layout_width="20dp"
-                            android:layout_height="20dp"/>
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_gedung" />
+
                         <TextView
-                            android:layout_marginLeft="10dp"
-                            android:text="Didital librari "
-                            android:textStyle="bold"
                             android:id="@+id/tvRoom"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Didital librari "
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                     <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="right"
                         android:layout_margin="3dp"
-                        app:cardElevation="1dp"
                         app:cardBackgroundColor="#6979f8"
                         app:cardCornerRadius="25dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp">
+                        app:cardElevation="1dp">
+
                         <LinearLayout
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:gravity="center"
-                            android:layout_gravity="center"
                             android:id="@+id/directLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
                             <ImageView
-                                android:layout_margin="5dp"
-                                android:src="@drawable/ic_petunjuk"
                                 android:layout_width="20dp"
-                                android:layout_height="20dp"/>
+                                android:layout_height="20dp"
+                                android:layout_margin="5dp"
+                                android:src="@drawable/ic_petunjuk" />
+
                             <TextView
-                                android:text="PETUNJUK ARAH"
-                                android:textStyle="bold"
-                                android:textColor="#ffffffff"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:text="PETUNJUK ARAH"
+                                android:textColor="#ffffffff"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="right"
-                        app:cardElevation="1dp"
+                        android:layout_margin="3dp"
                         app:cardBackgroundColor="#6979f8"
                         app:cardCornerRadius="25dp"
-                        android:layout_width="wrap_content"
-                        android:layout_margin="3dp"
-                        android:layout_height="50dp">
+                        app:cardElevation="1dp">
+
                         <LinearLayout
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:gravity="center"
-                            android:layout_gravity="center"
                             android:id="@+id/directGmaps"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
                             <ImageView
-                                android:layout_margin="5dp"
-                                android:src="@drawable/ic_petunjuk"
                                 android:layout_width="20dp"
-                                android:layout_height="20dp"/>
+                                android:layout_height="20dp"
+                                android:layout_margin="5dp"
+                                android:src="@drawable/ic_petunjuk" />
+
                             <TextView
-                                android:text="LIHAT DI GMAPS"
-                                android:textStyle="bold"
-                                android:textColor="#ffffffff"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:text="LIHAT DI GMAPS"
+                                android:textColor="#ffffffff"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_gravity="right"
-                android:weightSum="1"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:weightSum="1"></LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.arlib.floatingsearchview.FloatingSearchView
-            app:floatingSearch_backgroundColor="@color/white"
+    <LinearLayout
+        android:id="@+id/laytipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabwalk"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_width="match_parent"
-            android:id="@+id/searching"
-            app:floatingSearch_searchHint="Cari ruangan"
-            app:floatingSearch_suggestionsListAnimDuration="250"
-            app:floatingSearch_showSearchKey="true"
-            app:floatingSearch_leftActionMode="showSearch"
-            app:floatingSearch_close_search_on_keyboard_dismiss="true"
-            android:layout_above="@id/mapview"
-            />
-    </FrameLayout>
-</FrameLayout>
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_directions_walk_grey"
+            app:backgroundTint="#ffffffff"
+            app:elevation="3dp"
+            app:fabSize="normal"
+            app:tint="@color/colorPrimary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabbike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_directions_bike_grey"
+            app:backgroundTint="#ffffffff"
+            app:elevation="3dp"
+            app:fabSize="normal"
+            app:tint="@color/colorPrimary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabmoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_direction_motorcycle_grey"
+            app:backgroundTint="#ffffffff"
+            app:elevation="3dp"
+            app:fabSize="normal"
+            app:tint="@color/colorPrimary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_directions_car_grey"
+            app:backgroundTint="#ffffffff"
+            app:elevation="3dp"
+            app:fabSize="normal"
+            app:tint="@color/colorPrimary" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

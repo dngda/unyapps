@@ -413,6 +413,7 @@ class MapsFragment : Fragment(), MapsView {
     private fun initController() {
         mapController = map.controller
         mapController.setZoom(18)
+
     }
 
     private fun initMyLocation() {

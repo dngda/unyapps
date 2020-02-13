@@ -3,6 +3,8 @@ package id.infiniteuny.apps.ui.home
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import id.infiniteuny.apps.R
 import id.infiniteuny.apps.data.db.entities.Announcement
 import id.infiniteuny.apps.data.db.entities.News
 import id.infiniteuny.apps.data.repositories.AnnouncementRepository
@@ -24,7 +26,7 @@ class HomeViewModel(
     }
 
     fun onBeritaMoreClick(view: View) {
-
+        view.findNavController().navigate(R.id.action_homeFragment_to_moreNewsFragment)
     }
 
 }
