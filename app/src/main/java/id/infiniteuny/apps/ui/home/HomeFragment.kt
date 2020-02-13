@@ -18,6 +18,8 @@ import id.infiniteuny.apps.data.db.entities.News
 import id.infiniteuny.apps.ui.home.announcement.AnnouncementItem
 import id.infiniteuny.apps.ui.home.news.NewsContentActivity
 import id.infiniteuny.apps.ui.home.news.NewsItem
+import id.infiniteuny.apps.ui.home.viewpager.Faculty
+import id.infiniteuny.apps.ui.home.viewpager.FacultyAdapter
 import id.infiniteuny.apps.util.ApiException
 import id.infiniteuny.apps.util.Coroutines
 import id.infiniteuny.apps.util.NoInternetException
@@ -53,6 +55,8 @@ class HomeFragment : Fragment() {
                 }
                 initNewsRecyclerView(it.toNewsItem())
             })
+
+            facultyData()
 
             mViewModel.lastAnnouncementList.await().observe(this, Observer {
                 shimmer_pengumuman.apply {
@@ -111,6 +115,23 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun facultyData() {
+        val dataModelList: MutableList<Faculty> = ArrayList()
+
+        dataModelList.add(Faculty("Fakultas Teknik", "8.1"))
+        dataModelList.add(Faculty("Fakultas Mipa", "9.0"))
+        dataModelList.add(Faculty("Fakultas Ilmu Sosial", "7.0"))
+        dataModelList.add(Faculty("Fakultas Ilmu Pendidikan", "6.0"))
+        dataModelList.add(Faculty("Fakultas Ilmu Keolahragaan", "6.0"))
+        dataModelList.add(Faculty("Fakultas Ekonomi", "6.0"))
+        dataModelList.add(Faculty("Pasca Sarjana", "6.0"))
+
+        val adapter = FacultyAdapter(dataModelList,context)
+        fm_home_viewPager.adapter = adapter
+
+
+    }
+
 }
 
 private fun List<News>.toNewsItem(): List<NewsItem> {
@@ -123,4 +144,6 @@ private fun List<Announcement>.toAnnouncementItem(): List<AnnouncementItem> {
     return this.map {
         AnnouncementItem(it)
     }
+
+
 }

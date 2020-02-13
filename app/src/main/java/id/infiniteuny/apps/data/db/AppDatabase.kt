@@ -15,7 +15,7 @@ import id.infiniteuny.apps.data.db.entities.User
 
 @Database(
     entities = [User::class, News::class, NewsContent::class, Announcement::class],
-    version = 1
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -42,6 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "My.db"
-            ).build()
+            ).fallbackToDestructiveMigration()
+                .build()
     }
 }
