@@ -136,7 +136,7 @@ class HomeFragment : Fragment() {
         dataModelList.add(Faculty("Pasca Sarjana", "6.0"))
 
         val adapter = FacultyAdapter(dataModelList,context)
-        fm_home_viewPager.adapter = adapter
+      //  fm_home_viewPager.adapter = adapter
 
 
     }

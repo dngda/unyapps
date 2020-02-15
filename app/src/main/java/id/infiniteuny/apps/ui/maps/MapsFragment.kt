@@ -51,7 +51,12 @@ class MapsFragment : Fragment(), MapsView {
         latitude=latit
         longitude=longit
         logD("send loc ${latitude},${longitude}")
-        userMarker()
+        if (latitude != 0.0 && longitude != 0.0) {
+            userMarker()
+        }
+
+
+
     }
 
     companion object {
@@ -66,6 +71,7 @@ class MapsFragment : Fragment(), MapsView {
                 logD("centered")
                 isCentered=true
             }else{
+
                 logD("not centered")
             }
             userMarker.position = GeoPoint(latitude, longitude)
@@ -90,7 +96,7 @@ class MapsFragment : Fragment(), MapsView {
         routingResult=geoPoints
         val line = Polyline()
         line.setPoints(geoPoints)
-        line.color = R.color.colorPrimary
+        line.color = R.color.violet
         line.width = 15f
         firstRoute=true
         reDrawOnOverlay(line, destLat, destLong)
@@ -188,12 +194,10 @@ class MapsFragment : Fragment(), MapsView {
             buildingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_red)
             buildingMarker.position = GeoPoint(gedung.latitude, gedung.longitude)
             buildingMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            buildingMarker.setOnMarkerClickListener(object : Marker.OnMarkerClickListener {
-                override fun onMarkerClick(marker: Marker?, mapView: MapView?): Boolean {
-                    showDetail(gedung)
-                    return true
-                }
-            })
+            buildingMarker.setOnMarkerClickListener { marker, mapView ->
+                showDetail(gedung)
+                true
+            }
             map.overlays.add(buildingMarker)
 
         }
@@ -276,6 +280,7 @@ class MapsFragment : Fragment(), MapsView {
         fabUser = view.findViewById(R.id.fabmyLocation)
         fabMosq = view.findViewById(R.id.fabMosque)
         Configuration.getInstance().userAgentValue = context!!.packageName
+        view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
         fabUser.setOnClickListener {
             userMarker()
@@ -433,6 +438,8 @@ class MapsFragment : Fragment(), MapsView {
             mapController.animateTo(GeoPoint(latitude, longitude))
             mapController.setCenter(GeoPoint(latitude, longitude))
         }
+
+
 
     }
 

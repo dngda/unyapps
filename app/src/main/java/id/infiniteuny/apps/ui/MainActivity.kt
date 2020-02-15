@@ -20,6 +20,7 @@ import id.infiniteuny.apps.data.gps.GpsService
 import id.infiniteuny.apps.ui.maps.MapsView
 import id.infiniteuny.apps.util.logD
 import id.infiniteuny.apps.util.logE
+import id.infiniteuny.apps.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.osmdroid.config.Configuration
 
@@ -83,9 +84,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun getLocate() {
         if (serviceRunning(GpsService::class.java)) {
-//            toast("Service not Running")
+           toast("Service not Running")
         } else {
-//            toast("Service is Running")
+           toast("Service is Running")
             val intent = Intent(applicationContext, GpsService::class.java)
             startService(intent)
             registerReceiver(broadcastReceiver, IntentFilter(GpsService.str_reciver))
@@ -115,6 +116,7 @@ class MainActivity : AppCompatActivity() {
 //                    MapsFragment.longitude=p1.getStringExtra("longitude").toDouble()
                 }
             }else{
+
                 logE("disable")
             }
         }

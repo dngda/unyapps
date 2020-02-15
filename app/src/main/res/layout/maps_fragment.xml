@@ -9,8 +9,8 @@
 
         <org.osmdroid.views.MapView
             android:id="@+id/mapview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -19,12 +19,13 @@
 
         </org.osmdroid.views.MapView>
 
-
-
     <com.arlib.floatingsearchview.FloatingSearchView
         android:id="@+id/searching"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:background="@color/transparent"
+        app:floatingSearch_backgroundColor="@color/white"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -38,7 +39,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"></com.arlib.floatingsearchview.FloatingSearchView>
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.arlib.floatingsearchview.FloatingSearchView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabmyLocation"
