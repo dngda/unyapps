@@ -22,6 +22,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay"
@@ -65,14 +66,16 @@
             <!--                app:mt_placeholder="Cari Pengumuman"-->
             <!--                app:mt_roundedSearchBarEnabled="true" />-->
 
-            <androidx.viewpager.widget.ViewPager
+            <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
                 android:id="@+id/fm_home_viewPager"
                 android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
                 android:layout_height="260dp"
-                android:layout_marginTop="20dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toTopOf="@+id/fm_home_morePengumuman"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

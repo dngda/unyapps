@@ -375,7 +375,7 @@ class MapsFragment : Fragment(), MapsView {
         if(routingResult!!.size>0){
             val line = Polyline()
             line.setPoints(routingResult)
-            line.color = R.color.colorPrimary
+            line.color = R.color.violet
             line.width = 15f
             reDrawOnOverlay(line, destLat, destLong)
         }
