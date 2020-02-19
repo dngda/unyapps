@@ -16,12 +16,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mancj.materialsearchbar.MaterialSearchBar
 import id.ac.uny.utbk.data.model.Gedung
+import id.ac.uny.utbk.data.model.Halte
 import id.ac.uny.utbk.data.model.Mosque
 import id.ac.uny.utbk.data.model.Park
 import id.infiniteuny.apps.R
@@ -146,18 +148,20 @@ class MapsFragment : Fragment(), MapsView {
     private lateinit var infoLayout: LinearLayout
     private lateinit var gedungName: TextView
     private lateinit var roomName: TextView
-    private lateinit var directBtn: LinearLayout
+    private lateinit var directBtn: ConstraintLayout
     private lateinit var fabUser: FloatingActionButton
     private lateinit var fabMosq: FloatingActionButton
-
+    private lateinit var fabHalte: FloatingActionButton
     private var dataGedung: MutableList<Gedung> = mutableListOf()
     private var searhData: MutableList<Gedung> = mutableListOf()
     private var dataPark: MutableList<Park> = mutableListOf()
     private var dataMosque: MutableList<Mosque> = mutableListOf()
+    private var dataHalte : MutableList<Halte> = mutableListOf()
     lateinit var rootView: View
     var showPark: Boolean = false
     var showBuilding: Boolean = false
     var firstRoute=false
+    var showHalte : Boolean = false
     override fun isLoading(state: Boolean) {
 
     }
@@ -178,6 +182,12 @@ class MapsFragment : Fragment(), MapsView {
         logE(data.size.toString())
         dataMosque.addAll(data)
 
+    }
+
+    override fun showDataHalte(data: List<Halte>) {
+        dataHalte.clear()
+        logE(data.size.toString())
+        dataHalte.addAll(data)
     }
 /*
     override fun onAttach(activity: Activity?) {
@@ -223,6 +233,35 @@ class MapsFragment : Fragment(), MapsView {
                     laytipe.visibility = View.VISIBLE
                     this.destLat = mosq.latitude
                     this.destLong = mosq.longitude
+                    context!!.toast("Pilih type kendaraan anda")
+
+                }
+                roomName.text = ""
+                return@setOnMarkerClickListener true
+            }
+        }
+    }
+
+    private fun markerHalte() {
+        showHalte = true
+        dataHalte.forEach { halte ->
+            val halteMarker = Marker(map)
+            halteMarker.position = GeoPoint(halte.latitude, halte.longitude)
+            halteMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_violet)
+            halteMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            halteMarker.title = halte.halteName
+            map.overlays.add(halteMarker)
+            directGmaps.visibility=View.GONE
+            halteMarker.setOnMarkerClickListener { marker, mapView ->
+                infoLayout.visibility = View.VISIBLE
+                gedungName.text = halte.halteName
+                val text: TextView = rootView.findViewById(R.id.roomAvv)
+                text.text = ""
+                directBtn.setOnClickListener {
+                    infoLayout.visibility = View.GONE
+                    laytipe.visibility = View.VISIBLE
+                    this.destLat = halte.latitude
+                    this.destLong = halte.longitude
                     context!!.toast("Pilih type kendaraan anda")
 
                 }
@@ -279,6 +318,7 @@ class MapsFragment : Fragment(), MapsView {
         directBtn = view.findViewById(R.id.directLayout)
         fabUser = view.findViewById(R.id.fabmyLocation)
         fabMosq = view.findViewById(R.id.fabMosque)
+        fabHalte = view.findViewById(R.id.fabHalte)
         Configuration.getInstance().userAgentValue = context!!.packageName
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
@@ -342,6 +382,26 @@ class MapsFragment : Fragment(), MapsView {
             }
             map.invalidate()
         }
+        fabHalte.setOnClickListener {
+            when (showHalte) {
+                true -> {
+                    map.overlays.clear()
+                    userMarker()
+                    showHalte = false
+                    markering()
+                    map.invalidate()
+                }
+                false -> {
+                    map.overlays.clear()
+                    userMarker()
+                    showHalte = true
+                    markering()
+                    map.invalidate()
+                }
+            }
+            map.invalidate()
+        }
+
         fabwalk.setOnClickListener {
             this.typeRoute = "foot"
             laytipe.visibility = View.GONE
@@ -388,6 +448,9 @@ class MapsFragment : Fragment(), MapsView {
         if (showPark) {
             markerParkir()
         }
+        if (showHalte) {
+            markerHalte()
+        }
     }
 
 
@@ -395,15 +458,13 @@ class MapsFragment : Fragment(), MapsView {
         var data: MutableList<Gedung> = mutableListOf()
         if (dataGedung.size > 0) {
             dataGedung.forEach { gedung ->
-                gedung.ruangs.forEach {
                     if (param != null) {
-                        if (it.namaRuang.toLowerCase().contains(param.toLowerCase())
-                            || gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
+                        if (gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
                         ) {
                             data.add(gedung)
                         }
                     }
-                }
+
             }
         }
         return data
@@ -455,6 +516,7 @@ class MapsFragment : Fragment(), MapsView {
         presenter = MapsPresenter(this, this.context!!)
         presenter.getBuilding()
         presenter.getMushola()
+        presenter.getHalte()
         presenter.getParkir()
         if(buildingTrigger!=null){
             logD("datais${buildingTrigger!!.ruangs}")

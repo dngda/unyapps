@@ -84,9 +84,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun getLocate() {
         if (serviceRunning(GpsService::class.java)) {
-           toast("Service not Running")
+          // toast("Service not Running")
         } else {
-           toast("Service is Running")
+          // toast("Service is Running")
             val intent = Intent(applicationContext, GpsService::class.java)
             startService(intent)
             registerReceiver(broadcastReceiver, IntentFilter(GpsService.str_reciver))
