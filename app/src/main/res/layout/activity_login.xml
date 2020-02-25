@@ -13,7 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/loginBackground"
+        android:background="@color/colorPrimary"
         tools:context=".ui.auth.LoginActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -110,6 +110,7 @@
                 android:background="@drawable/btn_google"
                 android:foreground="@drawable/ripple"
                 android:text="         Login SSO"
+                android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textSize="22sp"
                 android:onClick="@{viewModel::onLoginButtonClick}"
@@ -126,6 +127,7 @@
                 android:foreground="@drawable/ripple"
                 android:onClick="@{viewModel::onGuestButtonClick}"
                 android:text="Guest"
+                android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"

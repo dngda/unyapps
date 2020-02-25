@@ -116,4 +116,7 @@ dependencies {
     //maps
     implementation 'org.osmdroid:osmdroid-android:6.1.5'
     implementation "org.jetbrains.anko:anko:0.10.6"
+
+    //viewpageer
+    implementation 'com.github.devlight:infinitecycleviewpager:1.0.2'
 }

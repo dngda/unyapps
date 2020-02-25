@@ -22,6 +22,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay"
@@ -46,7 +47,7 @@
                 android:background="@drawable/bg_gelombang"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
             <!--            <com.mancj.materialsearchbar.MaterialSearchBar-->
             <!--                android:id="@+id/fm_home_search"-->
@@ -65,14 +66,16 @@
             <!--                app:mt_placeholder="Cari Pengumuman"-->
             <!--                app:mt_roundedSearchBarEnabled="true" />-->
 
-            <androidx.viewpager.widget.ViewPager
+            <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
                 android:id="@+id/fm_home_viewPager"
                 android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
                 android:layout_height="260dp"
-                android:layout_marginTop="20dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toTopOf="@+id/fm_home_morePengumuman"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,7 +95,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="Pengumuman"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -104,15 +107,15 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="More"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
                     android:layout_marginEnd="20dp"
                     android:src="@drawable/ic_icon_material_navigate_next"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -2,10 +2,7 @@ package id.infiniteuny.apps.presenters
 
 import android.content.Context
 import com.google.gson.Gson
-import id.ac.uny.utbk.data.model.Directions
-import id.ac.uny.utbk.data.model.Gedung
-import id.ac.uny.utbk.data.model.Mosque
-import id.ac.uny.utbk.data.model.Park
+import id.ac.uny.utbk.data.model.*
 import id.infiniteuny.apps.ui.maps.MapsView
 import id.infiniteuny.apps.util.JsonReader
 import id.infiniteuny.apps.util.RouteRequest
@@ -18,6 +15,7 @@ class MapsPresenter(val view: MapsView, val context: Context) {
     private var data: MutableList<Gedung> = mutableListOf()
     private var musholas: MutableList<Mosque> = mutableListOf()
     private var parkirs: MutableList<Park> = mutableListOf()
+    private var haltes: MutableList<Halte> = mutableListOf()
 
     fun getBuilding() {
         data.addAll(JsonReader.readData(context))
@@ -28,6 +26,12 @@ class MapsPresenter(val view: MapsView, val context: Context) {
         musholas.clear()
         musholas.addAll(JsonReader.readDataMosq(context))
         view.showDataMosq(musholas)
+    }
+
+    fun getHalte() {
+        haltes.clear()
+        haltes.addAll(JsonReader.readDataHalte(context))
+        view.showDataHalte(haltes)
     }
 
     fun getParkir() {

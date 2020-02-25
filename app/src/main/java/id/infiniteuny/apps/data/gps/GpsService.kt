@@ -16,6 +16,8 @@ import android.content.DialogInterface
 import android.provider.Settings
 import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
 import android.widget.Toast
+import id.infiniteuny.apps.util.logD
+import id.infiniteuny.apps.util.logE
 
 
 class GpsService : Service(), LocationListener {
@@ -60,7 +62,7 @@ class GpsService : Service(), LocationListener {
     }
 
     override fun onProviderDisabled(p0: String?) {
-
+        getLocate()
     }
 
     inner class TimerTaskLocate : TimerTask() {
@@ -80,7 +82,7 @@ class GpsService : Service(), LocationListener {
         when (gpsEnabled && netEnable) {
             true -> {
                 if (netEnable) {
-                   // logD("netEnable")
+                        logD("netEnable")
                     location = null
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, this)
                     when (locationManager != null) {
@@ -88,8 +90,8 @@ class GpsService : Service(), LocationListener {
                             location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                             when (location != null) {
                                 true -> {
-                                   // logE("latitude ${location?.latitude.toString()}")
-                                   // logE("longitude${location?.longitude.toString()}")
+                                    logE("latitude ${location?.latitude.toString()}")
+                                    logE("longitude${location?.longitude.toString()}")
                                     latitude = location?.latitude!!
                                     longitude = location?.longitude!!
                                     updLocate()
@@ -126,6 +128,7 @@ class GpsService : Service(), LocationListener {
                 }
             }
         }
+
     }
 
     fun updLocate() {

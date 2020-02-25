@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -24,6 +25,7 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mancj.materialsearchbar.MaterialSearchBar
 import id.ac.uny.utbk.data.model.Gedung
+import id.ac.uny.utbk.data.model.Halte
 import id.ac.uny.utbk.data.model.Mosque
 import id.ac.uny.utbk.data.model.Park
 import id.infiniteuny.apps.R
@@ -53,7 +55,13 @@ class MapsFragment : Fragment(), MapsView {
         latitude=latit
         longitude=longit
         logD("send loc ${latitude},${longitude}")
-        userMarker()
+        if (latitude != 0.0 && longitude != 0.0) {
+            userMarker()
+        } else{
+        }
+
+
+
     }
 
     companion object {
@@ -68,6 +76,7 @@ class MapsFragment : Fragment(), MapsView {
                 logD("centered")
                 isCentered=true
             }else{
+
                 logD("not centered")
             }
             userMarker.position = GeoPoint(latitude, longitude)
@@ -104,12 +113,12 @@ class MapsFragment : Fragment(), MapsView {
         val destMarker = Marker(map)
         val buildMarker = Marker(map)
         destMarker.position = GeoPoint(line.points[line.points.size - 1])
-        destMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_orange)
+        destMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_target)
         destMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         userMarker.position = GeoPoint(latitude, longitude)
         userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         buildMarker.position = GeoPoint(buildLat, buildLong)
-        buildMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_red)
+       buildMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_transparant)
         buildMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         buildMarker.title = "tujuan"
         map.overlays.add(buildMarker)
@@ -139,21 +148,23 @@ class MapsFragment : Fragment(), MapsView {
     private var typeRoute: String = ""
     private lateinit var layoutSheet: LinearLayout
     private lateinit var userMarker: Marker
-    private lateinit var infoLayout: CardView
+    private lateinit var infoLayout: ConstraintLayout
     private lateinit var gedungName: TextView
     private lateinit var roomName: TextView
     private lateinit var directBtn: LinearLayout
     private lateinit var fabUser: FloatingActionButton
     private lateinit var fabMosq: FloatingActionButton
-
+    private lateinit var fabHalte: FloatingActionButton
     private var dataGedung: MutableList<Gedung> = mutableListOf()
     private var searhData: MutableList<Gedung> = mutableListOf()
     private var dataPark: MutableList<Park> = mutableListOf()
     private var dataMosque: MutableList<Mosque> = mutableListOf()
+    private var dataHalte : MutableList<Halte> = mutableListOf()
     lateinit var rootView: View
     var showPark: Boolean = false
     var showBuilding: Boolean = false
     var firstRoute=false
+    var showHalte : Boolean = false
     override fun isLoading(state: Boolean) {
 
     }
@@ -175,6 +186,12 @@ class MapsFragment : Fragment(), MapsView {
         dataMosque.addAll(data)
 
     }
+
+    override fun showDataHalte(data: List<Halte>) {
+        dataHalte.clear()
+        logE(data.size.toString())
+        dataHalte.addAll(data)
+    }
 /*
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
@@ -187,15 +204,13 @@ class MapsFragment : Fragment(), MapsView {
         showBuilding = true
         dataGedung.forEach { gedung ->
             val buildingMarker = Marker(map)
-            buildingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_red)
+            buildingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_building)
             buildingMarker.position = GeoPoint(gedung.latitude, gedung.longitude)
             buildingMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            buildingMarker.setOnMarkerClickListener(object : Marker.OnMarkerClickListener {
-                override fun onMarkerClick(marker: Marker?, mapView: MapView?): Boolean {
-                    showDetail(gedung)
-                    return true
-                }
-            })
+            buildingMarker.setOnMarkerClickListener { marker, mapView ->
+                showDetail(gedung)
+                true
+            }
             map.overlays.add(buildingMarker)
 
         }
@@ -206,11 +221,11 @@ class MapsFragment : Fragment(), MapsView {
         dataMosque.forEach { mosq ->
             val mosqueMarker = Marker(map)
             mosqueMarker.position = GeoPoint(mosq.latitude, mosq.longitude)
-            mosqueMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_green)
+            mosqueMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_mosque)
             mosqueMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             mosqueMarker.title = mosq.mosqueName
             map.overlays.add(mosqueMarker)
-            directGmaps.visibility=View.GONE
+            directGmaps.visibility = View.GONE
             mosqueMarker.setOnMarkerClickListener { marker, mapView ->
                 infoLayout.visibility = View.VISIBLE
                 gedungName.text = mosq.mosqueName
@@ -230,11 +245,40 @@ class MapsFragment : Fragment(), MapsView {
         }
     }
 
+    private fun markerHalte() {
+        showHalte = true
+        dataHalte.forEach { halte ->
+            val halteMarker = Marker(map)
+            halteMarker.position = GeoPoint(halte.latitude, halte.longitude)
+            halteMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_bus)
+            halteMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            halteMarker.title = halte.halteName
+            map.overlays.add(halteMarker)
+            directGmaps.visibility=View.GONE
+            halteMarker.setOnMarkerClickListener { marker, mapView ->
+                infoLayout.visibility = View.VISIBLE
+                gedungName.text = halte.halteName
+                val text: TextView = rootView.findViewById(R.id.roomAvv)
+                text.text = ""
+                directBtn.setOnClickListener {
+                    infoLayout.visibility = View.GONE
+                    laytipe.visibility = View.VISIBLE
+                    this.destLat = halte.latitude
+                    this.destLong = halte.longitude
+                    context!!.toast("Pilih type kendaraan anda")
+
+                }
+                roomName.text = ""
+                return@setOnMarkerClickListener true
+            }
+        }
+    }
+
     private fun markerParkir() {
         showPark = true
         dataPark.forEach { park ->
             val parkingMarker = Marker(map)
-            parkingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_blue)
+            parkingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_parking)
             parkingMarker.position = GeoPoint(park.latitude, park.longitude)
             parkingMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             parkingMarker.title = park.parkirName
@@ -277,7 +321,9 @@ class MapsFragment : Fragment(), MapsView {
         directBtn = view.findViewById(R.id.directLayout)
         fabUser = view.findViewById(R.id.fabmyLocation)
         fabMosq = view.findViewById(R.id.fabMosque)
+        fabHalte = view.findViewById(R.id.fabHalte)
         Configuration.getInstance().userAgentValue = context!!.packageName
+        view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
         fabUser.setOnClickListener {
             userMarker()
@@ -339,6 +385,26 @@ class MapsFragment : Fragment(), MapsView {
             }
             map.invalidate()
         }
+        fabHalte.setOnClickListener {
+            when (showHalte) {
+                true -> {
+                    map.overlays.clear()
+                    userMarker()
+                    showHalte = false
+                    markering()
+                    map.invalidate()
+                }
+                false -> {
+                    map.overlays.clear()
+                    userMarker()
+                    showHalte = true
+                    markering()
+                    map.invalidate()
+                }
+            }
+            map.invalidate()
+        }
+
         fabwalk.setOnClickListener {
             this.typeRoute = "foot"
             laytipe.visibility = View.GONE
@@ -385,6 +451,11 @@ class MapsFragment : Fragment(), MapsView {
         if (showPark) {
             markerParkir()
         }
+        if (showHalte) {
+            markerHalte()
+        }
+
+
     }
 
 
@@ -392,15 +463,13 @@ class MapsFragment : Fragment(), MapsView {
         var data: MutableList<Gedung> = mutableListOf()
         if (dataGedung.size > 0) {
             dataGedung.forEach { gedung ->
-                gedung.ruangs.forEach {
                     if (param != null) {
-                        if (it.namaRuang.toLowerCase().contains(param.toLowerCase())
-                            || gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
+                        if (gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
                         ) {
                             data.add(gedung)
                         }
                     }
-                }
+
             }
         }
         return data
@@ -436,6 +505,8 @@ class MapsFragment : Fragment(), MapsView {
             mapController.setCenter(GeoPoint(latitude, longitude))
         }
 
+
+
     }
 
     private fun routing(destLat: Double, destLong: Double) {
@@ -450,6 +521,7 @@ class MapsFragment : Fragment(), MapsView {
         presenter = MapsPresenter(this, this.context!!)
         presenter.getBuilding()
         presenter.getMushola()
+        presenter.getHalte()
         presenter.getParkir()
         if(buildingTrigger!=null){
             logD("datais${buildingTrigger!!.ruangs}")
@@ -505,7 +577,7 @@ class MapsFragment : Fragment(), MapsView {
                         mapController.setZoom(16)
                         map.overlays.clear()
                         val marker = Marker(map)
-                        marker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_red)
+                        marker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_target)
                         marker.position = GeoPoint(gedung.latitude, gedung.longitude)
                         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                         map.overlays.add(marker)

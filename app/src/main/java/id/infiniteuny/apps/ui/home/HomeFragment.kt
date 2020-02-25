@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import id.infiniteuny.apps.R
@@ -20,7 +21,6 @@ import id.infiniteuny.apps.ui.home.announcement.AnnouncementContentActivity
 import id.infiniteuny.apps.ui.home.announcement.AnnouncementItem
 import id.infiniteuny.apps.ui.home.news.NewsContentActivity
 import id.infiniteuny.apps.ui.home.news.NewsItem
-import id.infiniteuny.apps.ui.home.viewpager.Faculty
 import id.infiniteuny.apps.ui.home.viewpager.FacultyAdapter
 import id.infiniteuny.apps.util.ApiException
 import id.infiniteuny.apps.util.Coroutines
@@ -65,7 +65,9 @@ class HomeFragment : Fragment() {
                 initNewsRecyclerView(it.toNewsItem())
             })
 
-            facultyData()
+
+            val horizontalInfiniteCycleViewPager = view!!.findViewById<View>(R.id.fm_home_viewPager) as HorizontalInfiniteCycleViewPager
+            horizontalInfiniteCycleViewPager.adapter = context?.let { FacultyAdapter(it) }
 
             mViewModel.lastAnnouncementList.await().observe(this, Observer {
                 shimmer_pengumuman.apply {
@@ -124,22 +126,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun facultyData() {
-        val dataModelList: MutableList<Faculty> = ArrayList()
-
-        dataModelList.add(Faculty("Fakultas Teknik", "8.1"))
-        dataModelList.add(Faculty("Fakultas Mipa", "9.0"))
-        dataModelList.add(Faculty("Fakultas Ilmu Sosial", "7.0"))
-        dataModelList.add(Faculty("Fakultas Ilmu Pendidikan", "6.0"))
-        dataModelList.add(Faculty("Fakultas Ilmu Keolahragaan", "6.0"))
-        dataModelList.add(Faculty("Fakultas Ekonomi", "6.0"))
-        dataModelList.add(Faculty("Pasca Sarjana", "6.0"))
-
-        val adapter = FacultyAdapter(dataModelList,context)
-        fm_home_viewPager.adapter = adapter
-
-
-    }
 
 }
 

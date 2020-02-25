@@ -37,7 +37,7 @@ data class Gedung(
         ruangs.forEach {
             str = str + " " + it.namaRuang
         }
-        return "$namaGedung ($str)"
+        return "$namaGedung"
     }
 }
 

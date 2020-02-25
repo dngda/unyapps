@@ -41,4 +41,14 @@ object JsonReader {
         return data.mosque
     }
 
+    fun readDataHalte(context: Context): List<Halte> {
+        var gson = Gson()
+        val inStream = context.resources.openRawResource(R.raw.data_halte)
+        val bufferedReader = BufferedReader(InputStreamReader(inStream))
+        val read = bufferedReader.use { it.readText() }
+        var data = gson.fromJson(read, HalteModel::class.java)
+        bufferedReader.close()
+        return data.halte
+    }
+
 }
