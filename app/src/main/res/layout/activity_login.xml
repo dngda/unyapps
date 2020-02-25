@@ -109,6 +109,7 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/btn_google"
                 android:foreground="@drawable/ripple"
+                android:textColor="@color/colorPrimary"
                 android:text="         Login SSO"
                 android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
