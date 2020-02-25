@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF6800AC</color>
-    <color name="colorPrimaryDark">#004085</color>
-    <color name="colorOnSecondary">#8D60E2</color>
-    <color name="colorAccent">#B9AE00</color>
+    <color name="colorPrimary">#1874E7</color>
+    <color name="colorPrimaryDark">#0B5DD9</color>
+    <color name="colorOnSecondary">#E8F0FD</color>
+    <color name="colorAccent">#6A6E6F</color>
     <color name="white">#fff</color>
     <color name="loginBackground">#3600B1</color>
     <color name="violet">#8D60E2</color>

@@ -16,6 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
@@ -137,7 +139,7 @@ class MapsFragment : Fragment(), MapsView {
     private var typeRoute: String = ""
     private lateinit var layoutSheet: LinearLayout
     private lateinit var userMarker: Marker
-    private lateinit var infoLayout: LinearLayout
+    private lateinit var infoLayout: CardView
     private lateinit var gedungName: TextView
     private lateinit var roomName: TextView
     private lateinit var directBtn: LinearLayout

@@ -22,6 +22,9 @@
 
 
     <com.arlib.floatingsearchview.FloatingSearchView
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        app:floatingSearch_backgroundColor="@color/white"
         android:id="@+id/searching"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,11 +51,11 @@
         android:layout_marginEnd="20dp"
         android:scaleType="center"
         android:src="@drawable/ic_location"
-        app:backgroundTint="#ffffffff"
+        app:backgroundTint="@color/white"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="@id/cs"
         app:layout_constraintTop_toTopOf="@+id/searching"
-        app:tint="@color/violet" />
+        app:tint="@color/colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabBuilding"
@@ -62,11 +65,11 @@
         android:layout_marginEnd="20dp"
         android:scaleType="center"
         android:src="@drawable/ic_gedung"
-        app:backgroundTint="#ffffffff"
+        app:backgroundTint="@color/white"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="@id/cs"
         app:layout_constraintTop_toBottomOf="@+id/fabmyLocation"
-        app:tint="@color/violet" />
+        app:tint="@color/colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabParking"
@@ -76,11 +79,11 @@
         android:layout_marginEnd="20dp"
         android:scaleType="center"
         android:src="@drawable/ic_parking"
-        app:backgroundTint="#ffffffff"
+        app:backgroundTint="@color/white"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="@id/cs"
         app:layout_constraintTop_toBottomOf="@+id/fabBuilding"
-        app:tint="@color/violet" />
+        app:tint="@color/colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMosque"
@@ -90,156 +93,176 @@
         android:layout_marginEnd="20dp"
         android:scaleType="center"
         android:src="@drawable/ic_masjid"
-        app:backgroundTint="#ffffffff"
+        app:backgroundTint="@color/white"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="@id/cs"
         app:layout_constraintTop_toBottomOf="@+id/fabParking"
-        app:tint="@color/violet" />
+        app:tint="@color/colorPrimary" />
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/csmatch"
             android:layout_height="wrap_content"
-            android:background="#ffffffff"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="1dp"
-            app:cardUseCompatPadding="true">
+            android:background="#ffffffff">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/gedung_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginBottom="10dp"
+                android:text="FIS UNY"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/cardView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/csmatch"
+                app:layout_constraintBottom_toTopOf="@+id/cardView3"
+                tools:layout_editor_absoluteX="236dp">
+
+                <LinearLayout
+                    android:id="@+id/directLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/ic_petunjuk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text=" Petunjuk  Arah  "
+                        android:textColor="#ffffffff"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/colorAccent"
+                app:strokeWidth="10dp"
+                app:cardElevation="1dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/directGmaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/ic_petunjuk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lihat GMaps"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/gedung_name"
+                    android:id="@+id/roomAvv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FIS UNY"
-                    android:textColor="#6979f8"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="5dp"
+                    android:text="Room available"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_gedung"
+                        android:visibility="gone" />
 
                     <TextView
-                        android:id="@+id/roomAvv"
+                        android:id="@+id/tvRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Room available"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_gedung" />
-
-                        <TextView
-                            android:id="@+id/tvRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="Didital librari "
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_gravity="right"
-                        android:layout_margin="3dp"
-                        app:cardBackgroundColor="#6979f8"
-                        app:cardCornerRadius="25dp"
-                        app:cardElevation="1dp">
-
-                        <LinearLayout
-                            android:id="@+id/directLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_margin="5dp"
-                                android:src="@drawable/ic_petunjuk" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="PETUNJUK ARAH"
-                                android:textColor="#ffffffff"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_gravity="right"
-                        android:layout_margin="3dp"
-                        app:cardBackgroundColor="#6979f8"
-                        app:cardCornerRadius="25dp"
-                        app:cardElevation="1dp">
-
-                        <LinearLayout
-                            android:id="@+id/directGmaps"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_margin="5dp"
-                                android:src="@drawable/ic_petunjuk" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="LIHAT DI GMAPS"
-                                android:textColor="#ffffffff"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                        android:layout_marginLeft="10dp"
+                        android:text="Didital librari "
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </LinearLayout>
+
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:gravity="center"
-                android:weightSum="1"></LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/laytipe"
