@@ -8,10 +8,12 @@ import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("app:loadImageWithGlide")
 fun loadImage(iv: ImageView, url: String) {
-    Glide.with(iv.context)
-        .load(url)
-        .apply(RequestOptions.centerCropTransform())
-        .into(iv)
+    if (url.isNotEmpty()) {
+        Glide.with(iv.context)
+            .load(url)
+            .apply(RequestOptions.centerCropTransform())
+            .into(iv)
+    }
 }
 
 

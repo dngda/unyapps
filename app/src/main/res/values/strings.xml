@@ -96,4 +96,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="welcome">Welcome</string>
+    <string name="pengumuman">Pengumuman</string>
+    <string name="more">More</string>
+    <string name="berita">Berita</string>
+    <string name="login_info">Informasi aktual untuk kalangan UNY</string>
+    <string name="btn_guest">Guest</string>
 </resources>

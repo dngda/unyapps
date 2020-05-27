@@ -1,13 +1,11 @@
 package id.infiniteuny.apps.ui.maps
 
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.location.Location
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -16,14 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.arlib.floatingsearchview.FloatingSearchView
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.mancj.materialsearchbar.MaterialSearchBar
 import id.ac.uny.utbk.data.model.Gedung
 import id.ac.uny.utbk.data.model.Halte
 import id.ac.uny.utbk.data.model.Mosque
@@ -40,27 +36,24 @@ import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
-import java.io.File
 import java.util.*
 
 
 class MapsFragment : Fragment(), MapsView {
 
     override fun sendLocation(latit: Double, longit: Double) {
-        latitude=latit
-        longitude=longit
+        latitude = latit
+        longitude = longit
         logD("send loc ${latitude},${longitude}")
         if (latitude != 0.0 && longitude != 0.0) {
             userMarker()
-        } else{
         }
-
-
 
     }
 
@@ -70,24 +63,25 @@ class MapsFragment : Fragment(), MapsView {
 
     private fun userMarker() {
         if (latitude != 0.0 && longitude != 0.0) {
-            Log.i("test","userMark $isCentered")
-            if(!isCentered){
+            Log.i("test", "userMark $isCentered")
+            if (!isCentered) {
                 setCenterMap()
                 logD("centered")
-                isCentered=true
-            }else{
+                isCentered = true
+            } else {
 
                 logD("not centered")
             }
             userMarker.position = GeoPoint(latitude, longitude)
             userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             userMarker.title = "Posisi Anda"
-            userMarker.icon = context!!.resources.getDrawable(R.drawable.personmarker)
+            userMarker.icon = requireContext().getDrawable(R.drawable.personmarker)
             map.overlays.remove(userMarker)
             map.overlays.add(userMarker)
         }
     }
-    var isCentered=true
+
+    private var isCentered = true
     override fun showRoute(data: List<List<Double>>?, destLat: Double, destLong: Double) {
         showMosq = false
         showBuilding = false
@@ -98,55 +92,54 @@ class MapsFragment : Fragment(), MapsView {
         data?.forEach {
             geoPoints.add(GeoPoint(it[1], it[0]))
         }
-        routingResult=geoPoints
+        routingResult = geoPoints
         val line = Polyline()
         line.setPoints(geoPoints)
-        line.color = R.color.colorPrimary
-        line.width = 15f
-        firstRoute=true
-        reDrawOnOverlay(line, destLat, destLong)
+        line.outlinePaint.color = requireContext().getColor(R.color.colorPrimary)
+        line.outlinePaint.strokeWidth = 15f
+        firstRoute = true
+        reDrawOnOverlay(line)
     }
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    private fun reDrawOnOverlay(line: Polyline, destLat: Double, destLong: Double) {
+
+    private var latitude: Double = -7.774745865534583
+    private var longitude: Double = 110.38623690605164
+    private fun reDrawOnOverlay(line: Polyline) {
         map.overlayManager.clear()
         val destMarker = Marker(map)
         val buildMarker = Marker(map)
         destMarker.position = GeoPoint(line.points[line.points.size - 1])
-        destMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_target)
+        destMarker.icon = requireContext().getDrawable(R.drawable.ic_location_target)
         destMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         userMarker.position = GeoPoint(latitude, longitude)
         userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         buildMarker.position = GeoPoint(buildLat, buildLong)
-       buildMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_transparant)
+        buildMarker.icon =
+            this.requireContext().getDrawable(R.drawable.ic_location_transparant)
         buildMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         buildMarker.title = "tujuan"
         map.overlays.add(buildMarker)
         map.overlays.add(userMarker)
         map.overlays.add(destMarker)
         map.overlays.add(line)
-        if(firstRoute) {
-            firstRoute=false
+        if (firstRoute) {
+            firstRoute = false
             mapController.animateTo(GeoPoint(latitude, longitude))
             mapController.setCenter(GeoPoint(latitude, longitude))
         }
     }
-    private var routingResult:MutableList<GeoPoint>? = mutableListOf()
+
+    private var routingResult: MutableList<GeoPoint>? = mutableListOf()
     private lateinit var map: MapView
     private lateinit var myLocationOverlay: MyLocationNewOverlay
     private lateinit var presenter: MapsPresenter
     private lateinit var mapController: IMapController
     private lateinit var searchView: FloatingSearchView
-    private lateinit var manager: LocationManager
-    lateinit var curLoc: GeoPoint
-    var location: Location? = null
-    var showMosq: Boolean = false
+    private var showMosq: Boolean = false
     private var destLat: Double = 0.0
     private var destLong: Double = 0.0
     private var buildLat: Double = 0.0
     private var buildLong: Double = 0.0
     private var typeRoute: String = ""
-    private lateinit var layoutSheet: LinearLayout
     private lateinit var userMarker: Marker
     private lateinit var infoLayout: ConstraintLayout
     private lateinit var gedungName: TextView
@@ -159,12 +152,12 @@ class MapsFragment : Fragment(), MapsView {
     private var searhData: MutableList<Gedung> = mutableListOf()
     private var dataPark: MutableList<Park> = mutableListOf()
     private var dataMosque: MutableList<Mosque> = mutableListOf()
-    private var dataHalte : MutableList<Halte> = mutableListOf()
-    lateinit var rootView: View
-    var showPark: Boolean = false
-    var showBuilding: Boolean = false
-    var firstRoute=false
-    var showHalte : Boolean = false
+    private var dataHalte: MutableList<Halte> = mutableListOf()
+    private lateinit var rootView: View
+    private var showPark: Boolean = false
+    private var showBuilding: Boolean = false
+    private var firstRoute = false
+    private var showHalte: Boolean = false
     override fun isLoading(state: Boolean) {
 
     }
@@ -204,10 +197,11 @@ class MapsFragment : Fragment(), MapsView {
         showBuilding = true
         dataGedung.forEach { gedung ->
             val buildingMarker = Marker(map)
-            buildingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_building)
+            buildingMarker.icon =
+                requireContext().getDrawable(R.drawable.ic_location_building)
             buildingMarker.position = GeoPoint(gedung.latitude, gedung.longitude)
             buildingMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            buildingMarker.setOnMarkerClickListener { marker, mapView ->
+            buildingMarker.setOnMarkerClickListener { _, _ ->
                 showDetail(gedung)
                 true
             }
@@ -221,12 +215,13 @@ class MapsFragment : Fragment(), MapsView {
         dataMosque.forEach { mosq ->
             val mosqueMarker = Marker(map)
             mosqueMarker.position = GeoPoint(mosq.latitude, mosq.longitude)
-            mosqueMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_mosque)
+            mosqueMarker.icon =
+                requireContext().getDrawable(R.drawable.ic_location_mosque)
             mosqueMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             mosqueMarker.title = mosq.mosqueName
             map.overlays.add(mosqueMarker)
             directGmaps.visibility = View.GONE
-            mosqueMarker.setOnMarkerClickListener { marker, mapView ->
+            mosqueMarker.setOnMarkerClickListener { _, _ ->
                 infoLayout.visibility = View.VISIBLE
                 gedungName.text = mosq.mosqueName
                 val text: TextView = rootView.findViewById(R.id.roomAvv)
@@ -236,7 +231,7 @@ class MapsFragment : Fragment(), MapsView {
                     laytipe.visibility = View.VISIBLE
                     this.destLat = mosq.latitude
                     this.destLong = mosq.longitude
-                    context!!.toast("Pilih type kendaraan anda")
+                    requireContext().toast("Pilih type kendaraan anda")
 
                 }
                 roomName.text = ""
@@ -250,12 +245,13 @@ class MapsFragment : Fragment(), MapsView {
         dataHalte.forEach { halte ->
             val halteMarker = Marker(map)
             halteMarker.position = GeoPoint(halte.latitude, halte.longitude)
-            halteMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_bus)
+            halteMarker.icon =
+                requireContext().getDrawable(R.drawable.ic_location_bus)
             halteMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             halteMarker.title = halte.halteName
             map.overlays.add(halteMarker)
-            directGmaps.visibility=View.GONE
-            halteMarker.setOnMarkerClickListener { marker, mapView ->
+            directGmaps.visibility = View.GONE
+            halteMarker.setOnMarkerClickListener { _, _ ->
                 infoLayout.visibility = View.VISIBLE
                 gedungName.text = halte.halteName
                 val text: TextView = rootView.findViewById(R.id.roomAvv)
@@ -265,7 +261,7 @@ class MapsFragment : Fragment(), MapsView {
                     laytipe.visibility = View.VISIBLE
                     this.destLat = halte.latitude
                     this.destLong = halte.longitude
-                    context!!.toast("Pilih type kendaraan anda")
+                    requireContext().toast("Pilih type kendaraan anda")
 
                 }
                 roomName.text = ""
@@ -278,22 +274,23 @@ class MapsFragment : Fragment(), MapsView {
         showPark = true
         dataPark.forEach { park ->
             val parkingMarker = Marker(map)
-            parkingMarker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_parking)
+            parkingMarker.icon =
+                requireContext().getDrawable(R.drawable.ic_location_parking)
             parkingMarker.position = GeoPoint(park.latitude, park.longitude)
             parkingMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             parkingMarker.title = park.parkirName
-            parkingMarker.setOnMarkerClickListener { marker, mapView ->
+            parkingMarker.setOnMarkerClickListener { _, _ ->
                 infoLayout.visibility = View.VISIBLE
                 gedungName.text = park.parkirName
                 val text: TextView = rootView.findViewById(R.id.roomAvv)
                 text.text = ""
-                directGmaps.visibility=View.GONE
+                directGmaps.visibility = View.GONE
                 directBtn.setOnClickListener {
                     infoLayout.visibility = View.GONE
                     laytipe.visibility = View.VISIBLE
                     this.destLat = park.latitude
                     this.destLong = park.longitude
-                    context!!.toast("Pilih type kendaraan anda")
+                    requireContext().toast("Pilih type kendaraan anda")
                 }
                 roomName.text = ""
                 return@setOnMarkerClickListener true
@@ -303,7 +300,11 @@ class MapsFragment : Fragment(), MapsView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         rootView = inflater.inflate(R.layout.maps_fragment, container, false)
         map = rootView.findViewById(R.id.mapview)
@@ -313,7 +314,11 @@ class MapsFragment : Fragment(), MapsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Configuration.getInstance().setUserAgentValue(this.activity!!.packageName)
+        (activity as AppCompatActivity).apply {
+            supportActionBar?.hide()
+        }
+
+        Configuration.getInstance().userAgentValue = this.requireActivity().packageName
         searchView = view.findViewById(R.id.searching)
         infoLayout = view.findViewById(R.id.info)
         gedungName = view.findViewById(R.id.gedung_name)
@@ -322,7 +327,7 @@ class MapsFragment : Fragment(), MapsView {
         fabUser = view.findViewById(R.id.fabmyLocation)
         fabMosq = view.findViewById(R.id.fabMosque)
         fabHalte = view.findViewById(R.id.fabHalte)
-        Configuration.getInstance().userAgentValue = context!!.packageName
+        Configuration.getInstance().userAgentValue = requireContext().packageName
         view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
         fabUser.setOnClickListener {
@@ -408,25 +413,25 @@ class MapsFragment : Fragment(), MapsView {
         fabwalk.setOnClickListener {
             this.typeRoute = "foot"
             laytipe.visibility = View.GONE
-            context!!.toastCenter("Mencari Route...")
+            requireContext().toastCenter("Mencari Route...")
             routing(this.destLat, this.destLong)
         }
         fabcar.setOnClickListener {
             this.typeRoute = "car"
             laytipe.visibility = View.GONE
-            context!!.toastCenter("Mencari Route...")
+            requireContext().toastCenter("Mencari Route...")
             routing(this.destLat, this.destLong)
         }
         fabmoto.setOnClickListener {
             this.typeRoute = "car"
             laytipe.visibility = View.GONE
-            context!!.toastCenter("Mencari Route...")
+            requireContext().toastCenter("Mencari Route...")
             routing(this.destLat, this.destLong)
         }
         fabbike.setOnClickListener {
             this.typeRoute = "bike"
             laytipe.visibility = View.GONE
-            context!!.toastCenter("Mencari Route...")
+            requireContext().toastCenter("Mencari Route...")
             routing(this.destLat, this.destLong)
         }
         init()
@@ -435,12 +440,12 @@ class MapsFragment : Fragment(), MapsView {
     }
 
     private fun markering() {
-        if(routingResult!!.size>0){
+        if (routingResult!!.size > 0) {
             val line = Polyline()
             line.setPoints(routingResult)
-            line.color = R.color.colorPrimary
-            line.width = 15f
-            reDrawOnOverlay(line, destLat, destLong)
+            line.outlinePaint.color = requireContext().getColor(R.color.colorPrimary)
+            line.outlinePaint.strokeWidth = 15f
+            reDrawOnOverlay(line)
         }
         if (showMosq) {
             markerMushola()
@@ -459,16 +464,17 @@ class MapsFragment : Fragment(), MapsView {
     }
 
 
-    public fun searchingData(param: String?): MutableList<Gedung> {
-        var data: MutableList<Gedung> = mutableListOf()
+    private fun searchingData(param: String?): MutableList<Gedung> {
+        val data: MutableList<Gedung> = mutableListOf()
         if (dataGedung.size > 0) {
             dataGedung.forEach { gedung ->
-                    if (param != null) {
-                        if (gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
-                        ) {
-                            data.add(gedung)
-                        }
+                if (param != null) {
+                    if (gedung.namaGedung.toLowerCase(Locale.ROOT)
+                            .contains(param.toLowerCase(Locale.ROOT))
+                    ) {
+                        data.add(gedung)
                     }
+                }
 
             }
         }
@@ -478,12 +484,12 @@ class MapsFragment : Fragment(), MapsView {
     private fun initMap() {
         map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
         map.setMultiTouchControls(true)
-        map.setBuiltInZoomControls(false)
+        map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
     }
 
     private fun initController() {
         mapController = map.controller
-        mapController.setZoom(18)
+        mapController.setZoom(18.0)
 
     }
 
@@ -495,16 +501,25 @@ class MapsFragment : Fragment(), MapsView {
     }
 
     private fun setCenterMap() {
-        if(buildingTrigger!=null){
+        if (buildingTrigger != null) {
             logD("data")
-            mapController.animateTo(GeoPoint(buildingTrigger!!.latitude,buildingTrigger!!.longitude))
-            mapController.setCenter(GeoPoint(buildingTrigger!!.latitude,buildingTrigger!!.longitude))
-            mapController.setZoom(16)
-        }else {
+            mapController.animateTo(
+                GeoPoint(
+                    buildingTrigger!!.latitude,
+                    buildingTrigger!!.longitude
+                )
+            )
+            mapController.setCenter(
+                GeoPoint(
+                    buildingTrigger!!.latitude,
+                    buildingTrigger!!.longitude
+                )
+            )
+            mapController.setZoom(16.0)
+        } else {
             mapController.animateTo(GeoPoint(latitude, longitude))
             mapController.setCenter(GeoPoint(latitude, longitude))
         }
-
 
 
     }
@@ -517,28 +532,28 @@ class MapsFragment : Fragment(), MapsView {
         initMap()
         initController()
         setCenterMap()
-       //initMyLocation()
-        presenter = MapsPresenter(this, this.context!!)
+        //initMyLocation()
+        presenter = MapsPresenter(this, this.requireContext())
         presenter.getBuilding()
         presenter.getMushola()
         presenter.getHalte()
         presenter.getParkir()
-        if(buildingTrigger!=null){
+        if (buildingTrigger != null) {
             logD("datais${buildingTrigger!!.ruangs}")
             val building = buildingTrigger
-            isCentered=true
+            isCentered = true
             logE(isCentered.toString())
             searchShowMarker(building!!.namaGedung)
-        }else{
-            isCentered=false
+        } else {
+            isCentered = false
         }
 
 
 
 
-        searchView.setOnQueryChangeListener { oldQuery, newQuery ->
+        searchView.setOnQueryChangeListener { _, newQuery ->
             searhData.clear()
-            if (!newQuery.isEmpty() && newQuery.length > 2) {
+            if (newQuery.isNotEmpty() && newQuery.length > 2) {
                 searhData.addAll(searchingData(newQuery))
                 searchView.swapSuggestions(searhData)
             } else {
@@ -553,7 +568,7 @@ class MapsFragment : Fragment(), MapsView {
 
             override fun onSuggestionClicked(searchSuggestion: SearchSuggestion?) {
                 if (searchSuggestion != null) {
-                    var str = searchSuggestion.body.split("(")
+                    val str = searchSuggestion.body.split("(")
                     searchView.setSearchText(searchSuggestion.body)
                     searchView.clearSearchFocus()
                     searchShowMarker(str[0].trim())
@@ -571,19 +586,21 @@ class MapsFragment : Fragment(), MapsView {
         if (dataGedung.size > 0) {
             dataGedung.forEach { gedung ->
                 if (param != null) {
-                    if (gedung.namaGedung.toLowerCase().contains(param.toLowerCase())
+                    if (gedung.namaGedung.toLowerCase(Locale.ROOT)
+                            .contains(param.toLowerCase(Locale.ROOT))
                     ) {
                         showDetail(gedung)
-                        mapController.setZoom(16)
+                        mapController.setZoom(16.0)
                         map.overlays.clear()
                         val marker = Marker(map)
-                        marker.icon = this.context!!.resources.getDrawable(R.drawable.ic_location_target)
+                        marker.icon =
+                            this.requireContext().getDrawable(R.drawable.ic_location_target)
                         marker.position = GeoPoint(gedung.latitude, gedung.longitude)
                         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                         map.overlays.add(marker)
                         mapController.animateTo(GeoPoint(gedung.latitude, gedung.longitude))
                         mapController.setCenter(GeoPoint(gedung.latitude, gedung.longitude))
-                        isCentered=true
+                        isCentered = true
                     }
                 }
 
@@ -591,58 +608,59 @@ class MapsFragment : Fragment(), MapsView {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showDetail(gedung: Gedung) {
         infoLayout.visibility = View.VISIBLE
-        gedungName.text = gedung.namaGedung.toUpperCase()
-        directGmaps.visibility=View.VISIBLE
+        gedungName.text = gedung.namaGedung.toUpperCase(Locale.ROOT)
+        directGmaps.visibility = View.VISIBLE
         directGmaps.setOnClickListener {
-            val uri="https://www.google.com/maps/place/${gedung.url_gmaps}"
-            context!!.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+            val uri = "https://www.google.com/maps/place/${gedung.url_gmaps}"
+            requireContext().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
         }
         directBtn.setOnClickListener {
             infoLayout.visibility = View.GONE
             laytipe.visibility = View.VISIBLE
             this.destLat = gedung.lat_route
-            this.buildLat=gedung.latitude
-            this.buildLong=gedung.longitude
+            this.buildLat = gedung.latitude
+            this.buildLong = gedung.longitude
             this.destLong = gedung.long_route
-            context!!.toastCenter("Pilih type kendaraan anda")
-            buildingTrigger=null
+            requireContext().toastCenter("Pilih type kendaraan anda")
+            buildingTrigger = null
         }
         roomName.text = ""
         gedung.ruangs.forEach { ruang ->
             roomName.text = "${ruang.namaRuang} \n ${roomName.text}"
         }
-        isCentered=true
+        isCentered = true
     }
 
     private fun resizeImage(drawable: Drawable): Drawable {
         val image = (drawable as BitmapDrawable).bitmap
         val resizedImage = Bitmap.createScaledBitmap(image, 50, 50, false)
-        return BitmapDrawable(context!!.resources, resizedImage)
+        return BitmapDrawable(requireContext().resources, resizedImage)
     }
 
     override fun onResume() {
         super.onResume()
-        MainActivity.mapsCommunicator=this
+        MainActivity.mapsCommunicator = this
     }
 
     override fun onPause() {
         super.onPause()
         buildingTrigger = null
-        MainActivity.mapsCommunicator=null
+        MainActivity.mapsCommunicator = null
         buildingTrigger = null
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        MainActivity.mapsCommunicator=null
+        MainActivity.mapsCommunicator = null
         buildingTrigger = null
     }
 
     override fun onDetach() {
         super.onDetach()
-        MainActivity.mapsCommunicator=null
+        MainActivity.mapsCommunicator = null
         buildingTrigger = null
     }
 

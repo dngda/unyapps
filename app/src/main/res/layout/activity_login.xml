@@ -95,39 +95,39 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="Informasi aktual untuk kalangan UNY"
+                android:text="@string/login_info"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@id/btn_login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_google"
-                android:foreground="@drawable/ripple"
-                android:textColor="@color/colorPrimary"
-                android:text="         Login SSO"
-                android:fontFamily="@font/roboto_medium"
-                android:textAllCaps="false"
-                android:textSize="22sp"
-                android:onClick="@{viewModel::onLoginButtonClick}"
                 app:layout_constraintBottom_toTopOf="@id/btn_guest"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <!--            <androidx.appcompat.widget.AppCompatButton-->
+            <!--                android:id="@+id/btn_login"-->
+            <!--                android:layout_width="250dp"-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_marginBottom="16dp"-->
+            <!--                android:background="@drawable/btn_google"-->
+            <!--                android:foreground="@drawable/ripple"-->
+            <!--                android:textColor="@color/colorPrimary"-->
+            <!--                android:text="Login SSO"-->
+            <!--                android:fontFamily="@font/roboto_medium"-->
+            <!--                android:textAllCaps="false"-->
+            <!--                android:textSize="22sp"-->
+            <!--                android:onClick="@{viewModel::onLoginButtonClick}"-->
+            <!--                app:layout_constraintBottom_toTopOf="@id/btn_guest"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_guest"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="132dp"
                 android:background="@drawable/btn_outline"
                 android:foreground="@drawable/ripple"
                 android:onClick="@{viewModel::onGuestButtonClick}"
-                android:text="Guest"
+                android:text="@string/btn_guest"
                 android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

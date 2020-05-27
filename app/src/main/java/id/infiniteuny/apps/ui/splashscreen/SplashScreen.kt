@@ -1,7 +1,8 @@
 package id.infiniteuny.apps.ui.splashscreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import id.infiniteuny.apps.R
 
 class SplashScreen : AppCompatActivity() {
 

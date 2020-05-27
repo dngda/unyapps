@@ -11,34 +11,39 @@ import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.preference.PreferenceManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.data.gps.GpsService
 import id.infiniteuny.apps.ui.maps.MapsView
 import id.infiniteuny.apps.util.logD
 import id.infiniteuny.apps.util.logE
-import id.infiniteuny.apps.util.toast
-import kotlinx.android.synthetic.main.activity_main.*
+import id.infiniteuny.apps.util.setupWithNavController
 import org.osmdroid.config.Configuration
 
-@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+@Suppress(
+    "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION",
+    "DEPRECATED_IDENTITY_EQUALS"
+)
 class MainActivity : AppCompatActivity() {
 
     companion object{
         var mapsCommunicator: MapsView? =null
     }
 
+    private var currentNavController: LiveData<NavController>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        window.applyTransparentStatusBar()
-
-        val navController = Navigation.findNavController(this, R.id.fragment_container)
-        bot_navigation.setupWithNavController(navController)
-
+        if (savedInstanceState == null) {
+            setupBottomNavigationBar()
+        }
         mapsShow()
 
         ActivityCompat.requestPermissions(
@@ -46,7 +51,6 @@ class MainActivity : AppCompatActivity() {
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ),
@@ -54,8 +58,33 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState!!)
+
+        setupBottomNavigationBar()
+    }
+
+    private fun setupBottomNavigationBar() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bot_navigation)
+
+        val navGraphIds =
+            listOf(R.navigation.home_nav, R.navigation.maps_nav, R.navigation.profile_nav)
+
+        val controller = bottomNavigationView.setupWithNavController(
+            navGraphIds = navGraphIds,
+            fragmentManager = supportFragmentManager,
+            containerId = R.id.fragment_container,
+            intent = intent
+        )
+
+        controller.observe(this, Observer { navController ->
+            setupActionBarWithNavController(navController)
+        })
+        currentNavController = controller
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.fragment_container).navigateUp()
+        return currentNavController?.value?.navigateUp() ?: false
     }
 
     private fun mapsShow() {
@@ -71,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             1 -> {
 
-                if (grantResults.size > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
 
                     getLocate()
                 } else {

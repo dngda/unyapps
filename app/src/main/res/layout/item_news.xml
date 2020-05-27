@@ -31,6 +31,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@id/item_thumb"
@@ -40,7 +41,7 @@
                 tools:text="UNY KOLABORASI DENGAN TANOTO FOUNDATION WUJUDKAN MERDEKA BELAJAR" />
 
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"

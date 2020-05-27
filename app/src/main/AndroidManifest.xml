@@ -21,7 +21,10 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".ui.home.announcement.AnnouncementContentActivity"></activity>
+        <activity
+            android:name=".ui.home.announcement.AnnouncementContentActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name=".ui.splashscreen.SplashScreen" />
         <activity
             android:name=".ui.home.news.NewsContentActivity"
             android:label=""

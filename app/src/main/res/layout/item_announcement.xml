@@ -16,6 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +42,7 @@
                 tools:text="HASIL SELEKSI PENERIMAAN DOSEN KONTRAK UNIVERSITAS NEGERI YOGYAKARTA TAHUN 2020" />
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"

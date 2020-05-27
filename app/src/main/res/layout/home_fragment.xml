@@ -21,24 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
-                    app:layout_scrollFlags="scroll" />
-
-            </com.google.android.material.appbar.AppBarLayout>
 
             <FrameLayout
                 android:id="@+id/frameLayout"
@@ -47,7 +29,7 @@
                 android:background="@drawable/bg_gelombang"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!--            <com.mancj.materialsearchbar.MaterialSearchBar-->
             <!--                android:id="@+id/fm_home_search"-->
@@ -93,9 +75,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Pengumuman"
+                    android:text="@string/pengumuman"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -105,9 +87,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="More"
+                    android:text="@string/more"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +102,8 @@
                     android:src="@drawable/ic_icon_material_navigate_next"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,6 +140,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingTop="16dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/fm_home_morePengumuman"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_announcement" />
@@ -176,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Berita"
+                    android:text="@string/berita"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -188,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="More"
+                    android:text="@string/more"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -203,7 +187,8 @@
                     android:src="@drawable/ic_icon_material_navigate_next"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -240,6 +225,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingTop="16dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"

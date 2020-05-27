@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,15 +34,6 @@ class MoreAnnouncementFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindUI()
-        toolbar_morePengumuman.title = "Pengumuman"
-        (activity as AppCompatActivity).apply {
-            setSupportActionBar(toolbar_morePengumuman)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            toolbar_morePengumuman.setNavigationOnClickListener {
-                onBackPressed()
-            }
-        }
 
     }
 

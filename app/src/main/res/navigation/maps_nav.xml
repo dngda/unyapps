@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/maps_nav"
+    app:startDestination="@id/mapsFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="id.infiniteuny.apps.ui.maps.MapsFragment"
+        android:label="Maps UNY"
+        tools:layout="@layout/maps_fragment" />
+</navigation>

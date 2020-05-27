@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -41,11 +42,12 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        toolbar_home.title = "Home"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         bindUI()
-
+        (activity as AppCompatActivity).apply {
+            supportActionBar?.show()
+        }
         fm_home_moreBerita.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_moreNewsFragment)
         }
@@ -66,7 +68,8 @@ class HomeFragment : Fragment() {
             })
 
 
-            val horizontalInfiniteCycleViewPager = view!!.findViewById<View>(R.id.fm_home_viewPager) as HorizontalInfiniteCycleViewPager
+            val horizontalInfiniteCycleViewPager =
+                requireView().findViewById<View>(R.id.fm_home_viewPager) as HorizontalInfiniteCycleViewPager
             horizontalInfiniteCycleViewPager.adapter = context?.let { FacultyAdapter(it) }
 
             mViewModel.lastAnnouncementList.await().observe(this, Observer {
