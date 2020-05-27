@@ -19,7 +19,6 @@ class MoreAnnouncementViewModel(
     }
 
     var page: Int = 0
-    var rvState: Int? = null
     fun getAnnouncementListByPageAsync(page: Int): Deferred<LiveData<List<Announcement>>> {
         return viewModelScope.async {
             announcementRepository.getAnnouncementListDirect(page, true)

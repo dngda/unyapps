@@ -47,6 +47,13 @@ class NewsRepository(
         }
     }
 
+    suspend fun getNewsListDirect(page: Int, fetch: Boolean): LiveData<List<News>> {
+        return withContext(Dispatchers.IO) {
+            fetchNews(page, fetch)
+            newsList
+        }
+    }
+
     suspend fun getNewsContent(link: String): NewsContent {
         return withContext(Dispatchers.IO) {
             fetchNewsContent(link)
