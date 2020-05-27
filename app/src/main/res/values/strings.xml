@@ -102,4 +102,6 @@
     <string name="berita">Berita</string>
     <string name="login_info">Informasi aktual untuk kalangan UNY</string>
     <string name="btn_guest">Guest</string>
+    <string name="load_more">Load more</string>
+    <string name="loading">Loading</string>
 </resources>

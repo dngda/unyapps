@@ -44,7 +44,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindUI()
+        bindRecyclerUI()
+        bindViewPagerUI()
         (activity as AppCompatActivity).apply {
             supportActionBar?.show()
         }
@@ -56,29 +57,35 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun bindViewPagerUI() {
+        val horizontalInfiniteCycleViewPager =
+            requireView().findViewById<View>(R.id.fm_home_viewPager) as HorizontalInfiniteCycleViewPager
+        horizontalInfiniteCycleViewPager.adapter = context?.let { FacultyAdapter(it) }
+    }
+
     @SuppressLint("FragmentLiveDataObserve")
-    private fun bindUI() = Coroutines.main {
+    private fun bindRecyclerUI() {
         try {
-            mViewModel.lastNewsList.await().observe(this, Observer {
-                shimmer_berita.apply {
-                    stopShimmer()
-                    visibility = View.INVISIBLE
-                }
-                initNewsRecyclerView(it.toNewsItem())
-            })
+            Coroutines.main {
+                mViewModel.lastNewsList.await().observe(this, Observer {
+                    shimmer_berita.apply {
+                        stopShimmer()
+                        visibility = View.INVISIBLE
+                    }
+                    initNewsRecyclerView(it.toNewsItem())
+                })
+            }
 
+            Coroutines.main {
+                mViewModel.lastAnnouncementList.await().observe(this, Observer {
+                    shimmer_pengumuman.apply {
+                        stopShimmer()
+                        visibility = View.INVISIBLE
+                    }
+                    initAnnouncementRecyclerView(it.toAnnouncementItem())
+                })
+            }
 
-            val horizontalInfiniteCycleViewPager =
-                requireView().findViewById<View>(R.id.fm_home_viewPager) as HorizontalInfiniteCycleViewPager
-            horizontalInfiniteCycleViewPager.adapter = context?.let { FacultyAdapter(it) }
-
-            mViewModel.lastAnnouncementList.await().observe(this, Observer {
-                shimmer_pengumuman.apply {
-                    stopShimmer()
-                    visibility = View.INVISIBLE
-                }
-                initAnnouncementRecyclerView(it.toAnnouncementItem())
-            })
         } catch (e: ApiException) {
             Log.d("Api", e.message!!)
         } catch (e: NoInternetException) {

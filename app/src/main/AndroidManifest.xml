@@ -28,11 +28,11 @@
         <activity
             android:name=".ui.home.news.NewsContentActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".ui.MainActivity"
-            />
-        <activity android:name=".ui.auth.LoginActivity">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

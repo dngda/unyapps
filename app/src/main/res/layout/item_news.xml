@@ -16,7 +16,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="12dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,9 +30,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="2"
-                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@id/item_thumb"
@@ -47,9 +48,9 @@
                 android:layout_marginBottom="16dp"
                 android:text="@{news.created_date}"
                 android:textSize="12sp"
-                tools:text="@tools:sample/date/ddmmyy"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@tools:sample/date/ddmmyy" />
 
             <ImageView
                 android:id="@+id/item_thumb"
@@ -58,8 +59,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_judul"
                 app:loadImageWithGlide="@{news.thumbnail}"
-                tools:src="@tools:sample/avatars"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/avatars" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

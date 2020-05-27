@@ -1,64 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/more_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.news.MoreNewsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/more_root"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_more_berita"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shimmer_duration="2000"
+        tools:visibility="invisible">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_more_berita"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shimmer_duration="2000"
-            tools:visibility="invisible">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+            <include layout="@layout/placeholder_list_item" />
 
-                <include layout="@layout/placeholder_list_item" />
+        </LinearLayout>
 
-            </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fm_more_RvBerita"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_news" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fm_more_RvBerita"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="10"
-            tools:listitem="@layout/item_news" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

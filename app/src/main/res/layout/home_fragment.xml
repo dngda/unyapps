@@ -51,7 +51,7 @@
             <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
                 android:id="@+id/fm_home_viewPager"
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="16dp"
                 android:layout_height="260dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"

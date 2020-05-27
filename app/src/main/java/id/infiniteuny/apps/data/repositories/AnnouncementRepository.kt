@@ -46,19 +46,26 @@ class AnnouncementRepository(
         }
     }
 
+    suspend fun getAnnouncementListDirect(
+        page: Int,
+        forceFetch: Boolean
+    ): LiveData<List<Announcement>> {
+        return withContext(Dispatchers.IO) {
+            fetchAnnouncement(page, forceFetch)
+            announcementList
+        }
+    }
+
     private suspend fun fetchAnnouncement(page: Int, forceFetch: Boolean) {
         val lastSavedAt = prefs.getAnnouncementLastSavedAt()
         if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt) || forceFetch) {
             try {
-                var response = apiRequest {
-                    api.getAnnouncement(page)
-                }
-                while (response.status != "200") {
-                    response = apiRequest {
+                do {
+                    val response = apiRequest {
                         api.getAnnouncement(page)
                     }
-                }
-                announcementList.postValue(response.results)
+                    announcementList.postValue(response.results)
+                } while (response.status != "200")
             } catch (e: ApiException) {
                 Log.d("FetchError", e.message!!)
                 fetchAnnouncement(page, true)

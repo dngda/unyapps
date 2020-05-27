@@ -58,15 +58,12 @@ class NewsRepository(
         val lastSavedAt = prefs.getNewsLastSavedAt()
         if (lastSavedAt.isNullOrEmpty() || isFetchNeeded(lastSavedAt) || fetch) {
             try {
-                var response = apiRequest {
-                    api.getNews(page)
-                }
-                while (response.status != "200") {
-                    response = apiRequest {
+                do {
+                    val response = apiRequest {
                         api.getNews(page)
                     }
-                }
-                newsList.postValue(response.results)
+                    newsList.postValue(response.results)
+                } while (response.status != "200")
             } catch (e: ApiException) {
                 Log.d("FetchError", e.message!!)
                 fetchNews(page, true)
@@ -76,15 +73,12 @@ class NewsRepository(
 
     private suspend fun fetchNewsContent(link: String) {
         try {
-            var response = apiRequest {
-                api.getNewsContent(link)
-            }
-            while (response.status != "200") {
-                response = apiRequest {
+            do {
+                val response = apiRequest {
                     api.getNewsContent(link)
                 }
-            }
-            newsContent = response.result
+                newsContent = response.result
+            } while (response.status != "200")
         } catch (e: ApiException) {
             Log.d("FetchError", e.message!!)
             fetchNewsContent(link)

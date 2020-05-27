@@ -10,14 +10,10 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
-import java.util.*
-import android.R.string.cancel
-import android.content.DialogInterface
-import android.provider.Settings
 import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
 import android.widget.Toast
 import id.infiniteuny.apps.util.logD
-import id.infiniteuny.apps.util.logE
+import java.util.*
 
 
 class GpsService : Service(), LocationListener {
@@ -85,13 +81,13 @@ class GpsService : Service(), LocationListener {
                         logD("netEnable")
                     location = null
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, this)
-                    when (locationManager != null) {
+                    when (true) {
                         true -> {
                             location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                             when (location != null) {
                                 true -> {
-                                    logE("latitude ${location?.latitude.toString()}")
-                                    logE("longitude${location?.longitude.toString()}")
+                                    logD("latitude ${location?.latitude.toString()}")
+                                    logD("longitude ${location?.longitude.toString()}")
                                     latitude = location?.latitude!!
                                     longitude = location?.longitude!!
                                     updLocate()
@@ -135,16 +131,6 @@ class GpsService : Service(), LocationListener {
         intent.putExtra("latitude", latitude.toString())
         intent.putExtra("longitude", longitude.toString())
         sendBroadcast(intent)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        //logE("START SERVICE")
-        return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
