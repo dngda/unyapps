@@ -31,32 +31,64 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <com.mancj.materialsearchbar.MaterialSearchBar-->
-            <!--                android:id="@+id/fm_home_search"-->
-            <!--                style="@style/MaterialSearchBarLight"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="20dp"-->
-            <!--                android:layout_marginTop="40dp"-->
-            <!--                android:layout_marginEnd="20dp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintHorizontal_bias="0.5"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                app:mt_hint="Cari Pengumuman"-->
-            <!--                app:mt_maxSuggestionsCount="10"-->
-            <!--                app:mt_placeholder="Cari Pengumuman"-->
-            <!--                app:mt_roundedSearchBarEnabled="true" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_rectangle_34"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </ImageView>
+
+                <EditText
+                    android:id="@+id/fm_home_search"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginStart="10dp"
+                    android:focusable="false"
+                    android:fontFamily="@font/roboto_medium"
+                    android:hint="Cari Pengumuman"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                </EditText>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
                 android:id="@+id/fm_home_viewPager"
                 android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_height="260dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
                 app:layout_constraintBottom_toTopOf="@+id/fm_home_morePengumuman"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint"
                 />
 
 

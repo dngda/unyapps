@@ -55,6 +55,9 @@ class HomeFragment : Fragment() {
         fm_home_morePengumuman.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_moreAnnouncementFragment)
         }
+        fm_home_search.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun bindViewPagerUI() {

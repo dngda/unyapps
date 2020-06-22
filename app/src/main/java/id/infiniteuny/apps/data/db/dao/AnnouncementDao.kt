@@ -10,10 +10,11 @@ import id.infiniteuny.apps.data.db.entities.Announcement
 @Dao
 interface AnnouncementDao {
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllAnnouncement(announcement: List<Announcement>)
 
-    @Query("SELECT * FROM Announcement")
+    @Query("SELECT * FROM Announcement ")
     fun getAnnouncementList(): LiveData<List<Announcement>>
 
     @Query("SELECT * FROM Announcement LIMIT 3")

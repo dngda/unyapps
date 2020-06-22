@@ -18,6 +18,6 @@ object Faculty {
         Glide.with(view).load(libraryObject.res).centerCrop().into(img)
      }
 
-    class LibraryObject(var res: Int, var title: String )
+    class LibraryObject(var res: Int, var title: String , var url: String)
 }
 

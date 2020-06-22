@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_moreAnnouncementFragment"
             app:destination="@id/moreAnnouncementFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreNewsFragment"
@@ -27,4 +30,8 @@
         android:name="id.infiniteuny.apps.ui.home.announcement.MoreAnnouncementFragment"
         android:label="Pengumuman"
         tools:layout="@layout/more_announcement_fragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="id.infiniteuny.apps.ui.home.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

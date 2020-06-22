@@ -14,8 +14,10 @@ class MoreAnnouncementViewModel(
     announcementRepository: AnnouncementRepository
 ) : ViewModel() {
 
+
     val announcementList: Deferred<LiveData<List<Announcement>>> by lazyDeferred {
-        announcementRepository.getAnnouncementList(0, false)
+       announcementRepository.getAnnouncementList(0, false)
+
     }
 
     var page: Int = 0
