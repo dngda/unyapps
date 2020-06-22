@@ -10,6 +10,6 @@
         android:title="@string/maps" />
     <item
         android:id="@+id/profile_nav"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/profile" />
 </menu>

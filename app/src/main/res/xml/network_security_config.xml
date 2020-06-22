@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">uny-api.herokuapp.com</domain>
         <domain includeSubdomains="true">openptmap.org</domain>
+        <domain includeSubdomains="true">uny.ac.id</domain>
     </domain-config>
 </network-security-config>

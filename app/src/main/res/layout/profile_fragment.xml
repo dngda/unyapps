@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="id.infiniteuny.apps.ui.profile.ProfileViewModel" />
-
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,47 +8,13 @@
         android:layout_gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/welcome"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@{viewModel.user.name}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome"
-            tools:text="Danang Dwiyoga A" />
-
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@{viewModel.user.email.toString()}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:text="opoewaekeno123@gmail.com" />
-
+        <WebView
+            android:id="@+id/profile_web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

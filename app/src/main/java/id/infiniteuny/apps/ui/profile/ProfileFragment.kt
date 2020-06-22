@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import id.infiniteuny.apps.R
 import id.infiniteuny.apps.databinding.ProfileFragmentBinding
+import kotlinx.android.synthetic.main.profile_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -20,8 +21,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         val binding: ProfileFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false)
-        binding.viewModel = mViewModel
-        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -31,6 +30,7 @@ class ProfileFragment : Fragment() {
         (activity as AppCompatActivity).apply {
             supportActionBar?.show()
         }
+        profile_web_view.loadUrl("file:///android_asset/visi_misi.html")
     }
 
 }
