@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.viewpager.widget.PagerAdapter
 import id.infiniteuny.apps.R
+import id.infiniteuny.apps.ui.home.FacultyContentActivity
+import id.infiniteuny.apps.ui.home.announcement.AnnouncementContentActivity
 import id.infiniteuny.apps.ui.home.viewpager.Faculty.setupItem
 
 
@@ -62,9 +64,10 @@ class FacultyAdapter(private val context: Context) : PagerAdapter()  {
         container.addView(layout)
         setupItem(layout, LIBRARIES[position])
         layout.setOnClickListener {
-            val uri = Uri.parse(LIBRARIES[position].url)
-            val intent = Intent(Intent.ACTION_VIEW, uri )
-            context.startActivity(intent)
+            Intent(context, FacultyContentActivity::class.java).also {
+                it.putExtra("link", LIBRARIES[position].url)
+                context.startActivity(it)
+            }
         }
         return layout
     }
