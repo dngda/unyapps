@@ -22,7 +22,7 @@
 
 
     <com.arlib.floatingsearchview.FloatingSearchView
-        android:background="@color/transparent"
+        android:background="@drawable/ic_rectangle_34"
         android:backgroundTint="@color/transparent"
         app:floatingSearch_backgroundColor="@color/white"
         android:id="@+id/searching"

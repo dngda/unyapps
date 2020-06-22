@@ -25,7 +25,7 @@
                     android:text="FIS UNY"
                     android:textSize="24dp"
                     android:textStyle="bold"
-                    android:textColor="#6979f8"
+                    android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             <ImageView
@@ -65,7 +65,7 @@
             <androidx.cardview.widget.CardView
                     app:cardElevation="0dp"
                     android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="#6979f8"
+                    app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp" >
@@ -81,7 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     <ImageView
-                            android:src="@color/colorAccent"
+                            android:src="@color/white"
                             android:layout_marginLeft="10dp"
                             android:layout_width="20dp"
                             android:layout_height="20dp" />

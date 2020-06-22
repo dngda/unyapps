@@ -2,9 +2,13 @@ package id.infiniteuny.apps.util
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.appcompat.app.ActionBar
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 
 fun Window.applyTransparentStatusBar() {

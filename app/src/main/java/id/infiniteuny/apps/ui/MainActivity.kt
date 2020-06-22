@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         }
         mapsShow()
 
+
+
         ActivityCompat.requestPermissions(
             this,
             arrayOf(

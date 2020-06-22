@@ -7,15 +7,18 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.webkit.*
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import id.infiniteuny.apps.R
 import kotlinx.android.synthetic.main.activity_announcement_content.*
@@ -92,9 +95,21 @@ class AnnouncementContentActivity : AppCompatActivity() {
             val intentChooser = Intent.createChooser(shareIntent, "Share")
             startActivity(intentChooser)
         }
+        changeColor(R.color.colorPrimaryDark)
+
 
     }
 
+    private fun changeColor(resourseColor: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = ContextCompat.getColor(
+                applicationContext,
+                resourseColor
+            )
+        }
+        val bar: ActionBar? = supportActionBar
+        bar?.setBackgroundDrawable(ColorDrawable(resources.getColor(resourseColor)))
+    }
     private fun downloadDialog(
         url: String,
         userAgent: String,

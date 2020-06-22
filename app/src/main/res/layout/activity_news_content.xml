@@ -122,7 +122,9 @@
             android:layout_margin="@dimen/fab_margin"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@android:drawable/ic_menu_share" />
+            app:tint="@color/colorPrimary"
+            android:backgroundTint="#d0efff"
+            android:src="@drawable/ic_icon_share" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

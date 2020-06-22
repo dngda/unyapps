@@ -58,7 +58,9 @@
             android:id="@+id/fabShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_share"
+            app:tint="@color/colorPrimary"
+            android:backgroundTint="#d0efff"
+            android:src="@drawable/ic_icon_share"
             app:layout_anchor="@id/bottomAppBarr" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
